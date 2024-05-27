@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Applied Econometrics (online) - 3&nbsp; Modeling in the Social Sciences</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assessment.html" rel="next">
+<link href="./linear_regression.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modeling in the Social Sciences</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Econometrics (online)</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regression Analysis in the Social Sciences</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modeling in the Social Sciences</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assessment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Specification and Assessment Issues</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">In conclusion</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Reviewing probability and statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-morevar" id="toc-sec-morevar" class="nav-link active" data-scroll-target="#sec-morevar"><span class="toc-section-number">3.1</span>  Why more independent variables?</a></li>
+  <li><a href="#sec-multivariate" id="toc-sec-multivariate" class="nav-link" data-scroll-target="#sec-multivariate"><span class="toc-section-number">3.2</span>  Multivariate regression analysis</a>
+  <ul class="collapse">
+  <li><a href="#measures-of-fit-for-multiple-regression" id="toc-measures-of-fit-for-multiple-regression" class="nav-link" data-scroll-target="#measures-of-fit-for-multiple-regression"><span class="toc-section-number">3.2.1</span>  Measures of fit for multiple regression</a></li>
+  <li><a href="#the-least-squares-assumptions-for-multivariate-regression" id="toc-the-least-squares-assumptions-for-multivariate-regression" class="nav-link" data-scroll-target="#the-least-squares-assumptions-for-multivariate-regression"><span class="toc-section-number">3.2.2</span>  The least squares assumptions for multivariate regression</a></li>
+  <li><a href="#testing-with-multivariate-regression-models" id="toc-testing-with-multivariate-regression-models" class="nav-link" data-scroll-target="#testing-with-multivariate-regression-models"><span class="toc-section-number">3.2.3</span>  Testing with multivariate regression models</a></li>
+  </ul></li>
+  <li><a href="#sec-nonlinear" id="toc-sec-nonlinear" class="nav-link" data-scroll-target="#sec-nonlinear"><span class="toc-section-number">3.3</span>  Non-linear specifications</a>
+  <ul class="collapse">
+  <li><a href="#polynomials" id="toc-polynomials" class="nav-link" data-scroll-target="#polynomials"><span class="toc-section-number">3.3.1</span>  Polynomials</a></li>
+  <li><a href="#interaction-variables" id="toc-interaction-variables" class="nav-link" data-scroll-target="#interaction-variables"><span class="toc-section-number">3.3.2</span>  Interaction variables</a></li>
+  <li><a href="#logarithmic-transformations" id="toc-logarithmic-transformations" class="nav-link" data-scroll-target="#logarithmic-transformations"><span class="toc-section-number">3.3.3</span>  Logarithmic transformations</a></li>
+  </ul></li>
+  <li><a href="#sec-fixedeffects" id="toc-sec-fixedeffects" class="nav-link" data-scroll-target="#sec-fixedeffects"><span class="toc-section-number">3.4</span>  Using fixed effects in panel data</a></li>
+  <li><a href="#conclusion-and-discussion" id="toc-conclusion-and-discussion" class="nav-link" data-scroll-target="#conclusion-and-discussion"><span class="toc-section-number">3.5</span>  Conclusion and discussion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-modeling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modeling in the Social Sciences</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>In <a href="linear_regression.html"><span>Chapter&nbsp;2</span></a> we discussed the origins of, working of, and assumptions behind univariate regression. That is, a regression model with only one independent variable <span class="math inline">\(X\)</span> on the right hand side.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> However, and especially in the social sciences, you almost always see regressions with many independent variables. Depending on the field, these variables can be called control variables, confounding factors or moderator variables. But why are these variables included? Is it only to improve model performance or are there other reasons? <a href="#sec-morevar"><span>Section&nbsp;3.1</span></a> deals with this question whereafter <a href="#sec-multivariate"><span>Section&nbsp;3.2</span></a> shows how you can include additional variables in a <em>multivariate regression model</em> and especially how you should interpret them. <a href="#sec-nonlinear"><span>Section&nbsp;3.3</span></a> extends the multivariate regression model and shows how you can actually use this model to estimate a broad range of linear and non-linear economic models. <a href="#sec-fixedeffects"><span>Section&nbsp;3.4</span></a> discusses the use of multiple dummy variables (see again <a href="linear_regression.html#sec-dummy"><span>Section&nbsp;2.3.2.4</span></a>) in a way that economists refer to as <em>fixed effects</em>. The last section concludes and provides a further discussion of the benefits and limitations of multivariate regression models.</p>
+<section id="sec-morevar" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-morevar"><span class="header-section-number">3.1</span> Why more independent variables?</h2>
+<p>So, why do we include more variables? One possible answer is because it makes a better predictive model. That is, a model that is able to explain the variation in the dependent variable <span class="math inline">\(Y\)</span> better.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> So, the R<span class="math inline">\(^2\)</span> increases. But, as argued in <a href="linear_regression.html"><span>Chapter&nbsp;2</span></a> we are not so much interested in prediction, but more in establishing a <strong>causal</strong> relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. So, if you change <span class="math inline">\(X\)</span> (and only <span class="math inline">\(X\)</span>) does <span class="math inline">\(Y\)</span> change and then with how much?</p>
+<p>Although economists often claim that they are the only (social-)science that focuses on causality and provides a statistical framework for that, there are other approaches to causality as well. One that is often used in other sciences is the approach of the mathematican Judea Pearl <span class="citation" data-cites="pearl2009causality">(<a href="references.html#ref-pearl2009causality" role="doc-biblioref">Pearl 2009</a>)</span>. This approach focuses on the use of Directed Acyclical Graphs (DAGs), which is a graphical visualisation of causality chains (or, what impacts what). We borrow this approach for the most simple setting as explained in <a href="#fig-unknown">Figure&nbsp;<span>3.1</span></a>. Here, we go back to our Californian school district dataset again, where we still are interested in the effect of class size on school performance. So, we suppose that there is an effect from student teacher ratio on test scores as displayed with an directed arrow in <a href="#fig-unknown">Figure&nbsp;<span>3.1</span></a>. We also know that the R<span class="math inline">\(^2\)</span> of that regression model was rather low (5%), so by default there must be other but yet unknown factors, let us name them for now <span class="math inline">\(U\)</span> (often as well referred to as unobservables), that influence test scores as well (so a directed arrow going from <span class="math inline">\(U\)</span> to test scores).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-unknown" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./figures/unknown.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.1: Unrelated omitted variables</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we are fine with this is as long as <span class="math inline">\(U\)</span> does <strong>not impact</strong> the student teacher ratio. Then, there is still an isolated effect of student teacher ratio on class size and that is exactly what we want to measure. However, if there is a directed arrow going from <span class="math inline">\(U\)</span> into <span class="math inline">\(STR\)</span> as depicted by <a href="#fig-unobshet">Figure&nbsp;<span>3.2</span></a>, then the effect of student teacher ratio is not isolated anymore. Essentially, the effect of student teacher ratio on class size is composed out of two parts:</p>
+<ol type="1">
+<li>The <strong>causal</strong> effect on student teacher ratio on class size captured by the chain <span class="math inline">\(\text{STR} \longrightarrow \text{testscore}\)</span>. The one we are after.</li>
+<li>The impact of the unknown variables on test scores. As we have not modeled them in our regression model, the effect is captured by the chain <span class="math inline">\(U \longrightarrow \text{STR} \longrightarrow \text{testscore}\)</span></li>
+</ol>
+<p>Economists refer to this phenomenon as <strong>omitted variable bias</strong>, whilst in the statistical world, this is as often called confounding variables or the <strong>confounding fork</strong> <span class="citation" data-cites="mcelreath2020statistical">(<a href="references.html#ref-mcelreath2020statistical" role="doc-biblioref">McElreath 2020</a>)</span> and it, unfortunately, occurs very often.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-unobshet" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./figures/Unobshet.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.2: Related omitted variables</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So, when <strong>U</strong> is a <em>common</em> cause for both student teacher ratio and test scores there is omitted variable bias. If we go back to our population regression model as follows: <span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + u_i,
+\end{equation}\]</span> then we know that the error <span class="math inline">\(u\)</span> arises because of factors that influence <span class="math inline">\(Y\)</span> but are not included in the regression function; so, there are <em>always</em> omitted variables. But they do not always lead to bias. For omitted variable bias to occur, the omitted factor, let’s call it <span class="math inline">\(Z\)</span><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, must be:</p>
+<ol type="1">
+<li>A <strong>determinant</strong> of <span class="math inline">\(Y\)</span> (i.e.&nbsp;<span class="math inline">\(Z\)</span> is part of <span class="math inline">\(u\)</span>)</li>
+<li>A <strong>determinant</strong> of the regressor <span class="math inline">\(X\)</span> (<em>at least</em>, there should hold that <span class="math inline">\(corr(Z,X) \neq 0\)</span>)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ol>
+<p>Thus, both conditions must hold for the omission of <span class="math inline">\(Z\)</span> to result in omitted variable bias.</p>
+<p>Now, in our Californian district school dataset we have many more variables. One of them is variable that measures the english language ability (whether the student has English as a second language). Note that in California there are many migrants, especially from Latin-America. Now, you can readily argue that not having English as first language plausibly affects standardized test scores: so, <span class="math inline">\(Z\)</span> is a <strong>determinant</strong> of <span class="math inline">\(Y\)</span>. Moreover, immigrant communities tend to be less affluent and thus have smaller school budgets—and, therefore, higher <span class="math inline">\(STR\)</span>: <span class="math inline">\(Z\)</span> is most likely as well a <strong>determinant</strong> of <span class="math inline">\(X\)</span>.</p>
+<p>So, most likely, our original estimation from <a href="linear_regression.html"><span>Chapter&nbsp;2</span></a>, <span class="math inline">\(\hat{\beta}_1\)</span>, is biased (so, it is not the true causal effect). But can we say something about the direction of that bias? Yes, but the argument tends to become very quickly rather complex. In this case, note that districts with more migrant communities tend to have (<em>i</em>) higher class sizes and (<em>ii</em>) lower test scores. So, to the original estimation they add a <em>negative</em> effect. Thus, following this reasoning, the “true” effect must be less negative. Now, especially with negative signs this reasoning becomes rather complex, so if common sense fails you, then there is the following formula:</p>
+<p><span class="math display">\[\begin{equation}
+\hat{\beta}_1 \overset{p}{\to} \beta_1 + \frac{\sigma_u}{\sigma_X}\rho_{Xu},
+\end{equation}\]</span> where you should focus on the sign of the correlation between <span class="math inline">\(X\)</span> and the regression residual <span class="math inline">\(u\)</span> (all standard errors, <span class="math inline">\(\sigma\)</span>, are always positive by default). Now, the first least squares assumption states that <span class="math inline">\(\rho_{Xu} = 0\)</span>—no correlation between the regressor and the regression residual. But now there is correlation because of omitted variable bias. And because there is a negative relation between immigrants communities and school performance, <span class="math inline">\(\rho_{Xu}\)</span> should be negative. Furthermore, because the original estimation from <a href="linear_regression.html"><span>Chapter&nbsp;2</span></a> was already negative to begin with the “true” <span class="math inline">\(\beta_1\)</span> should be less negative. In conclusion, districts with more English learning students (<em>i</em>) do worse on standardized tests and (<em>ii</em>) have bigger classes (smaller budgets), so ignoring the English learning factor results in overstating the class size effect (in an absolute sense).</p>
+<p>You might wonder whether this is actually going on in the Californian district school data. To see this, <a href="#fig-omitca">Figure&nbsp;<span>3.3</span></a> offers a cross tabulation of test scores by class size and percentage English learners.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-omitca" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./figures/Sheet7.png" class="img-fluid figure-img" width="800"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.3: Cross tabulation of test scores by class size and percentage English learners</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, the table depicted in Figure @ref(fig:omitca) is complex in its various dimensions. We have our two categories of class size (small and large), together with the difference in test scores, but we now stratify this by four categories of percentage English learners. There are several important observations to make here:</p>
+<ol type="1">
+<li>districts with <em>fewer</em> English Learners (so less migrants) have on average <em>higher</em> test scores (what we assumed above);</li>
+<li>districts with <em>fewer</em> English Learners (so less migrants) have <em>smaller</em> classes (what we assumed above);</li>
+<li>the effect of class size with comparable percentages English learners is still (mostly negative), but not as much as we compare for all districts together (the <em>Difference</em>-column). This confirms our reasoning that our original estimate was too negative.</li>
+</ol>
+<p>No, as already mentioned above, omitted variable bias occurs very often. So, how to correct for this such that the bias disappaers. In general, there are three strategies:</p>
+<ol type="1">
+<li>we can run a randomized controlled experiment in which treatment (<span class="math inline">\(STR\)</span>) is randomly assigned: then percentage English learners (<span class="math inline">\(PctEL\)</span>) is still a determinant of test scores, but by construction <span class="math inline">\(PctEL\)</span> should be uncorrelated with <span class="math inline">\(STR\)</span>. Unfortunately, is it very difficult to randomize class size in reality and often this strategy is just not attainable as being too costly or unethical (this accounts for all sciences);</li>
+<li>we can adopt the cross tabulation approach of above, with finer gradations of <span class="math inline">\(STR\)</span> and <span class="math inline">\(PctEL\)</span>. Then by construction, within each group all classes have the same <span class="math inline">\(PctEL\)</span> so we control for <span class="math inline">\(PctEL\)</span>. A disadvantages is that one needs many observations, especially when one wants to stratify upon other variables as well;</li>
+<li>finally, and perhaps the easiest approach, we can use a population regression model in which the omitted variable (<span class="math inline">\(PctEL\)</span>) is no longer omitted. We just include <span class="math inline">\(PctEL\)</span> as an additional regressor in a multiple regression model. This is what the next section deals with. Obviously, a disadvantage of this approach is that you need observations for the omitted variable (but that also accounts for method 2).</li>
+</ol>
+</section>
+<section id="sec-multivariate" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-multivariate"><span class="header-section-number">3.2</span> Multivariate regression analysis</h2>
+<p>So, if we have information about an important omitted variable, as in the case of the size of migrant communities in the example above, then we can use that information in a multivariate population regression model. In the case of two regressors, that would look like: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + u_i, i=1,\ldots,n
+\end{equation}\]</span> where:</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> is the dependent variable</li>
+<li><span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> are the two independent variables (regressors)</li>
+<li><span class="math inline">\((Y_i, X_{1i}, X_{2i})\)</span> denote the i<span class="math inline">\(^{\mathrm{th}}\)</span> observation on <span class="math inline">\(Y\)</span>, <span class="math inline">\(X_1\)</span>, and <span class="math inline">\(X_2\)</span>.</li>
+<li><span class="math inline">\(\beta_0\)</span> is the unknown population intercept</li>
+<li><span class="math inline">\(\beta_1\)</span> is the effect on <span class="math inline">\(Y\)</span> of a change in <span class="math inline">\(X_1\)</span>, <strong>holding</strong> <span class="math inline">\(X_2\)</span> constant</li>
+<li><span class="math inline">\(\beta_2\)</span> is the effect on <span class="math inline">\(Y\)</span> of a change in <span class="math inline">\(X_2\)</span>, <strong>holding</strong> <span class="math inline">\(X_1\)</span> constant</li>
+<li><span class="math inline">\(u_i\)</span> is the the regression error (omitted factors)</li>
+</ul>
+<p>Now, the only element that changes is the interpretation of a parameter, say <span class="math inline">\(\beta_1\)</span>. In this case, it can still be seen as a ‘slope’ parameter, although now in 3-dimensional space, but it now states specifically that the other parameter(s) should be held constant. This does facilitate the interpretation of <span class="math inline">\(\beta_1\)</span>. For example, consider changing <span class="math inline">\(X_1\)</span> by <span class="math inline">\(\Delta X_1\)</span> while holding <span class="math inline">\(X_2\)</span> constant. That means that the population regression line before the change looks like: <span class="math display">\[\begin{equation}
+Y = \beta_0 + \beta_1 X_{1} + \beta_2 X_{2},
+\end{equation}\]</span> whilst the population regression line, after the change, looks like: <span class="math display">\[\begin{equation}
+Y + \Delta Y = \beta_0 + \beta_1 (X_{1} + \Delta X_1) + \beta_2 X_{2}
+\end{equation}\]</span> And if we take the difference, then the interpretation of <span class="math inline">\(\beta_1\)</span> boils down again to the marginal effect:<span class="math inline">\(\Delta Y = \beta_1 \Delta X_1\)</span>. Or, <span class="math inline">\(\beta_1 = \frac{\Delta Y}{\Delta X_1}\)</span> when holding <span class="math inline">\(X_2\)</span> constant and, likewise, <span class="math inline">\(\beta_2 = \frac{\Delta Y}{\Delta X_2}\)</span> when holding <span class="math inline">\(X_1\)</span> constant. <span class="math inline">\(\beta_0\)</span> is now the predicted value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X_1 = X_2 = 0\)</span></p>
+<p>If we do this for the the Californian school district data, then the original population regression line was estimated as: <span class="math display">\[\begin{equation}
+\widehat{TestScore} = 698.9- 2.28 STR
+\end{equation}\]</span> But if we now include include percent English Learners in the district (<span class="math inline">\(PctEL\)</span>) to the model then the population regression ‘line’ becomes: <span class="math display">\[\begin{equation}
+\widehat{TestScore} = 686.0- 1.10 STR - 0.65  PctEL
+\end{equation}\]</span></p>
+<p>Clearly, the effect of student teacher ratio becomes smaller (that is, less negative). That indicates that the original regression suffers from omitted variable bias. And this is what should happen as reasoned above. The <code>STATA</code> syntax for a multivariate regression model is now rather straightforward. You basically add another to the regression equation, as below:</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr str el_pct, <span class="kw">robust</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 2, 417)         =     223.82
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.4264
+                                                Ro
+&gt; ot MSE          =     14.464
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+         str |  -1.101296   .4328472    -2.54   0.
+&gt; 011                                             
+&gt;         -1.95213                                
+&gt;                    -.2504616
+      el_pct |  -.6497768   .0310318   -20.94   0.
+&gt; 000                                             
+&gt;         -.710775                                
+&gt;                    -.5887786
+       _cons |   686.0322   8.728224    78.60   0.
+&gt; 000                                             
+&gt;         668.8754                                
+&gt;                      703.189
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>Obviously, the effect of student teacher ration reduces with 50%! The interpretation of the rest of the statistical output, such as measures of fit and test statistics, follows in the subsections below.</p>
+<section id="measures-of-fit-for-multiple-regression" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="measures-of-fit-for-multiple-regression"><span class="header-section-number">3.2.1</span> Measures of fit for multiple regression</h3>
+<p>In multivariate regression models, there are four commonly used measures of fit, three of them we have seen before.</p>
+<ol type="1">
+<li>The standard error of regression or the <span class="math inline">\(SER\)</span> denotes the standard deviation of <span class="math inline">\(\hat{u}_i\)</span> and includes a degrees of freedom correction (degrees of freedom in this case denotes how many variables your have used and typically is denoted with <span class="math inline">\(k\)</span>. The <span class="math inline">\(SER\)</span> is defined as: <span class="math display">\[\begin{equation}
+SER = s_{\hat{u}} = \sqrt{\frac{1}{n-k-1} \sum_{i=1}^n \hat{u}^2_i},
+\end{equation}\]</span> where <span class="math inline">\(k\)</span> is the number of variables (including the constant) use in the regression model. Note that in the univariate regression model <span class="math inline">\(k=2\)</span>—the slope coefficient and the constant.</li>
+<li>The root mean square error (RMSE) which denotes as well the stdandard deviation of <span class="math inline">\(\hat{u}_i\)</span> but now without degrees of freedom. We have seen this before in Eq. @ref(eq:rmse) and does not change.</li>
+<li>The <span class="math inline">\(R^2\)</span> which measures the fraction of variance of <span class="math inline">\(Y\)</span> explained by the independent variables. Again, we have seen this one before</li>
+<li>The adjusted “adjusted <span class="math inline">\(R^2\)</span>” (or <span class="math inline">\(\bar{R}^2\)</span>) which is equal to the <span class="math inline">\(R^2\)</span> with a degrees-of-freedom correction that adjusts for estimation uncertainty. It can be formulated as: <span class="math display">\[\begin{equation}
+\bar{R}^2 = 1 - \frac{n-1}{n-k-1}\frac{SSR}{TSS}.
+\end{equation}\]</span> Note that using this formulation, in a multivariate setting, it always should hold that <span class="math inline">\(\bar{R}^2 &lt;R^2\)</span>. But why do we care so much for the amount of variables that we use (denoted with <span class="math inline">\(k\)</span>). That is because with each additional variable the <span class="math inline">\(R^2\)</span> always increases. And it is essential to notice that when <span class="math inline">\(k=n\)</span>, the <span class="math inline">\(R^2 = 1\)</span>, so there is no variation left anymore. But that feels like cheating. You just have a parameter for each observation that you have, but such a model must be meaningless. Therefore, you always want to correct for the number of variables that you use.</li>
+</ol>
+<p>In our Californian school district example that would amount to the following two outcomes. First for the univariate model: <span class="math display">\[\begin{eqnarray}
+TestScore &amp;= &amp;698.9- 2.28  STR \\
+&amp;&amp;R^2 = .05, SER = 18.6
+\end{eqnarray}\]</span></p>
+<p>And then for the multivariate model.</p>
+<p><span class="math display">\[\begin{eqnarray}
+TestScore &amp;=&amp; 686.0 - 1.10  STR - 0.65 PctEL \\
+&amp;&amp;R^2=.426, \bar{R}^2=0.424, SER = 14.5
+\end{eqnarray}\]</span></p>
+<p>Note that all measures of fit increases. The <span class="math inline">\(\bar{R}^2\)</span> now indicates that 42% of all variation in test scores are explained. That is a <em>huge</em> improvement compared to the 5% explanatory power of the univariate case. That indicates that the <span class="math inline">\(PctEL\)</span> strongly correlates with testscores. But again, we are not so much interested in prediction, but want to find the causal impact of class size instead. Another thing to notice here is that the <span class="math inline">\(R^2\)</span> and the <span class="math inline">\(\bar{R}^2\)</span> are very close. That is because the number of variables is much smaller than the number of observations <span class="math inline">\(k \ll n\)</span>, so that the impact of <span class="math inline">\(k\)</span> is not very big.</p>
+<p>A final remark concerns a peculiarity of <code>STATA</code>. In the regression output of above, <code>STATA</code> does not provide the <span class="math inline">\(\bar{R}^2\)</span>. That is because of the option <code>, robust</code>. Without that option, the regression output would give both measures of fit.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr str el_pct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS     
+&gt;  Number of obs   =       420
+-------------+----------------------------------  
+&gt;  F(2, 417)       =    155.01
+       Model |  64864.3011         2  32432.1506  
+&gt;  Prob &gt; F        =    0.0000
+    Residual |  87245.2925       417  209.221325  
+&gt;  R-squared       =    0.4264
+-------------+----------------------------------  
+&gt;  Adj R-squared   =    0.4237
+       Total |  152109.594       419  363.030056  
+&gt;  Root MSE        =    14.464
+
+--------------------------------------------------
+&gt; ----------------------------
+     testscr | Coefficient  Std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+         str |  -1.101296   .3802783    -2.90   0.
+&gt; 004                                             
+&gt;        -1.848797                                
+&gt;                    -.3537945
+      el_pct |  -.6497768   .0393425   -16.52   0.
+&gt; 000                                             
+&gt;        -.7271112                                
+&gt;                    -.5724423
+       _cons |   686.0322   7.411312    92.57   0.
+&gt; 000                                             
+&gt;         671.4641                                
+&gt;                     700.6004
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>Another option is to specifically ask <code>STATA</code> to display the <span class="math inline">\(\bar{R}^2\)</span> by invoking the command <code>display</code>, then some text (text always goes between strings), and finally the thing you want to see (<code>e(r2_a)</code>). Something like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"adjusted R2 = "</span> <span class="fu">e</span>(r2_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>adjusted R2 = .42368043</code></pre>
+</div>
+</div>
+</section>
+<section id="the-least-squares-assumptions-for-multivariate-regression" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="the-least-squares-assumptions-for-multivariate-regression"><span class="header-section-number">3.2.2</span> The least squares assumptions for multivariate regression</h3>
+<p>Thus, it is easy to add other variables, so that the multivariate regression model now looks like: <span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i}+\ldots + \beta_k X_{ki}+u_i, i=1,\ldots,n
+\end{equation}\]</span> Suppose we are interested in <span class="math inline">\(\beta_1\)</span>. How do we then know whether our estimation <span class="math inline">\(\hat{\beta}_1\)</span> is unbiased? For that we again resort to our least squares assumption, some of them will change a bit and we have to add a fourth one:</p>
+<ol type="1">
+<li>The first least squares assumptions changes slightly. Now, we state that the conditional distribution of <span class="math inline">\(u\)</span> given all <span class="math inline">\(X_i\)</span>’s has mean zero, that is, <span class="math inline">\(E(u|X_1 = x_1,\ldots, X_k = x_k) = 0\)</span>. So, <span class="math inline">\(\beta_1\)</span> is biased even another variable <span class="math inline">\(X_k\)</span> is correlated with <span class="math inline">\(u\)</span>. So, only of the variables <span class="math inline">\(X_i\)</span> has to be correlated with <span class="math inline">\(u\)</span> and then all parameters are to a certain extent biased.</li>
+<li>The second least squares assumption is more or less as before but now in a multivariate fashion, so the whole set of (X<span class="math inline">\(_{1i}\)</span>,,X<span class="math inline">\(_{ki}\)</span>,Y<span class="math inline">\(_i\)</span>), with <span class="math inline">\(i =1,\ldots,n\)</span>, should be independent and identical distributed (<span class="math inline">\(i.i.d\)</span>).</li>
+<li>The third least squares assumptions states again that large outliers are rare for all variables included, so for all <span class="math inline">\(X_1,\ldots, X_k\)</span>, and <span class="math inline">\(Y\)</span>.</li>
+<li>The fourth assumption is new and states that there is no perfect multicollinearity. We discuss this further below.</li>
+</ol>
+<section id="multicollinearity" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="multicollinearity"><span class="header-section-number">3.2.2.1</span> Multicollinearity</h4>
+<p>Multicollinearity comes in two flavours; perfect and imperfect. The former functions as a multivariate least squares assumptions whilst the latter oftentimes gives the largest problems. We start the discussion with perfect multicollinearity and then continue with the case of imperfect multicollinearity.</p>
+<section id="perfect-multicollinearity" class="level5" data-number="3.2.2.1.1">
+<h5 data-number="3.2.2.1.1" class="anchored" data-anchor-id="perfect-multicollinearity"><span class="header-section-number">3.2.2.1.1</span> Perfect multicollinearity</h5>
+<p>The official definition of perfect multicollinearity is that there is a <strong>perfect linear combination</strong> amongst your variables. That means that there is not one optimal solution, but instead many (actually, infinitely many) more. Let us illustrate this by the following example. Suppose you include <span class="math inline">\(STR\)</span> twice in your regression. Now, <code>STATA</code> produces then the following output:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr str str el_pct, <span class="kw">robust</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>note: str omitted because of collinearity.
+
+Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 2, 417)         =     223.82
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.4264
+                                                Ro
+&gt; ot MSE          =     14.464
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+         str |  -1.101296   .4328472    -2.54   0.
+&gt; 011                                             
+&gt;         -1.95213                                
+&gt;                    -.2504616
+         str |          0  (omitted)
+      el_pct |  -.6497768   .0310318   -20.94   0.
+&gt; 000                                             
+&gt;         -.710775                                
+&gt;                    -.5887786
+       _cons |   686.0322   8.728224    78.60   0.
+&gt; 000                                             
+&gt;         668.8754                                
+&gt;                      703.189
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>See that <code>STATA</code> drops one of the <span class="math inline">\(STR\)</span> variables. But why is that? See that the impact of twice this variable should be equivalent to: <span class="math display">\[\begin{equation}
+\beta_1 STR = w_1 \beta_1 STR + w_2 \beta_1 STR = (w_1 + w_2) \beta_1 STR ,
+\end{equation}\]</span> where <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are weights chosen such that they satisfy the condition that <span class="math inline">\(w_1 + w_2 = 1\)</span>. But there is an infinite number of combinations that satisfy this condition! So, there is not an optimal solution and one of these variables should be dropped.</p>
+<p>The violation of no perfect multicollearity often occurs when using dummies (see again Subsection @ref(sec:dummy)). Suppose that we regress <span class="math inline">\(TestScore\)</span> on a constant, <span class="math inline">\(D\)</span>, and <span class="math inline">\(B\)</span>, where:<span class="math inline">\(D_i =1\)</span> if <span class="math inline">\(STR \leq 20\)</span>, <span class="math inline">\(=0\)</span> otherwise ; <span class="math inline">\(B_i =1\)</span> if <span class="math inline">\(STR&gt;20\)</span>, <span class="math inline">\(= 0\)</span> otherwise. This example is slightly more complex as there is no perfect correlation between <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. However, the model contains as well a constant and that create a perfect linear combination, namely <span class="math inline">\(B_i + D_i = 1\)</span> and that is the definition of a constant (<span class="math inline">\(\beta_1 \times 1\)</span>), so there is perfect multicollinearity in the model.</p>
+<p>A different way of seeing this is to consider the following regression model and note that by definition <span class="math inline">\(D_i = 1- B_i\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+Testscr_i &amp;= \beta_0 + \beta_1 D_i + \beta_2 B_i + u_i\\
+          &amp;= \beta_0 + \beta_1 D_i + \beta_2 (1 - D_i) + u_i\\
+          &amp;= (\beta_0 + \beta_2) + (\beta_1 - \beta_2) D_i + u_i.
+\end{align}\]</span> Suppose that the true constant equals <span class="math inline">\(680\)</span> and the slope parameter equals <span class="math inline">\(7\)</span>. Then it is not difficult to see that there is an <strong>infinite</strong> amount of combinations possible of values for <span class="math inline">\(\beta_0, \beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> that leads to these numbers.</p>
+<p>Now, this example is a special case of the so-called dummy variable trap. Suppose you have a set of multiple binary (dummy) variables, which are mutually exclusive and exhaustive—that is, there are multiple categories and every observation falls in one and only one category (e.g., infant, child, teenager, adult). If you include all these dummy variables and a constant, you will have perfect multicollinearity—the dummy variable trap.</p>
+<p>There are possible solutions to the dummy variable trap:</p>
+<ol type="1">
+<li>Omit one of the groups (e.g., the infants), or</li>
+<li>Omit the intercept</li>
+</ol>
+<p>In most cases you omit one of the groups (typically the one with the lowest value). This give the constant then the interpretation of the average value of that left-out category, where the dummy variables are then the relative differences to that left-out category.</p>
+<p>Now, perfect multicollinearity usually reflects a mistake in the definitions of the regressors, or an oddity in the data. And, usually this is not a problem, because if you have perfect multicollinearity, your statistical software will let you know—either by crashing or giving an error message or by “dropping” one of the variables arbitrarily and very often the solution to perfect multicollinearity is to modify your list of regressors such that you no longer have perfect multicollinearity.</p>
+</section>
+<section id="imperfect-multicollinearity" class="level5" data-number="3.2.2.1.2">
+<h5 data-number="3.2.2.1.2" class="anchored" data-anchor-id="imperfect-multicollinearity"><span class="header-section-number">3.2.2.1.2</span> Imperfect multicollinearity</h5>
+<p>Now imperfect and perfect multicollinearity are quite different despite the similarity of the names. Imperfect multicollinearity, namely, occurs when two or more regressors are very highly correlated. And if two regressors are very highly correlated, then their scatterplot will pretty much look like a straight line—they are collinear—but unless the correlation is exactly <span class="math inline">\(\pm\)</span> 1, that collinearity is imperfect. What this implies is that one or more of the regression coefficients will be imprecisely estimated. Why is that? That is because of the definition of the coefficient in a multivariate regression model. Namely, the coefficient on <span class="math inline">\(X_1\)</span> is the effect of <span class="math inline">\(X_1\)</span> <strong>holding <span class="math inline">\(X_2\)</span> constant</strong>, but if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are highly correlated, then there is very little variation in <span class="math inline">\(X_1\)</span> once <span class="math inline">\(X_2\)</span> is held constant. That means that the data are pretty much uninformative about what happens when <span class="math inline">\(X_1\)</span> changes but <span class="math inline">\(X_2\)</span> doesn’t, so the variance of the OLS estimator of the coefficient on <span class="math inline">\(X_1\)</span> will be large. And this results in large standard errors for one or more of the OLS coefficients. But often this is very hard to detect. Are standard errors high because of imperfect multicollinearity, because the number of observations is very low, or because there is large variation in the data? The answer to this unfortunately boils down to reasoning, but before you start estimating your statistical models it always good to look at scatterplots and correlations between variables.</p>
+<p>But what is a high correlation? With a reasonable amount of observations all correlations below <span class="math inline">\(0.9\)</span> can be considered fine. In practice, only correlations between variables higher than say <span class="math inline">\(0.95\)</span> start to impose problems.</p>
+</section>
+</section>
+</section>
+<section id="testing-with-multivariate-regression-models" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="testing-with-multivariate-regression-models"><span class="header-section-number">3.2.3</span> Testing with multivariate regression models</h3>
+<section id="hypothesis-tests-and-confidence-intervals-for-a-single-coefficient-in-multiple-regression" class="level4" data-number="3.2.3.1">
+<h4 data-number="3.2.3.1" class="anchored" data-anchor-id="hypothesis-tests-and-confidence-intervals-for-a-single-coefficient-in-multiple-regression"><span class="header-section-number">3.2.3.1</span> Hypothesis tests and confidence intervals for a single coefficient in multiple regression</h4>
+<p>Recall from Subsection @ref(sec:unitesting) that for hypothesis testing in a classical statistical framework we make use of the fact that <span class="math inline">\(\frac{\hat{\beta}_1- E(\hat{\beta}_1)}{\sqrt{var(\hat{\beta}_1)}}\)</span> is approximately distributed as <span class="math inline">\(N(0,1)\)</span> according to the Central Limit theorem. Thus hypotheses on <span class="math inline">\(\beta_1\)</span> can be tested using the usual <span class="math inline">\(t\)</span>-statistic, and confidence intervals are constructed as <span class="math inline">\(\{\hat{\beta}_1 \pm 1.96 SE (\hat{\beta}_1)\}\)</span>. And this finding carries over to the multivariate setting where for <span class="math inline">\(\beta_2,\ldots, \beta_k\)</span> we make use of the same framework. One thing to keep in mind is that <span class="math inline">\(\hat{\beta}_1\)</span> and <span class="math inline">\(\hat{\beta}_2\)</span> are generally not independently distributed—so neither are their <span class="math inline">\(t\)</span>-statistics (more on this later).</p>
+<p>Now, if we return to our Californian school district data set then we find that for the univariate case holds:</p>
+<p><span class="math display">\[\begin{equation}
+TestScore =\underbrace{698.9}_{10.4} - \underbrace{2.28}_{0.52}  STR,
+\end{equation}\]</span></p>
+<p>And the population regression “line” for the multivariate case is estimated as: <span class="math display">\[\begin{equation}
+TestScore = \underbrace{686.0}_{8.7} - \underbrace{1.10}_{0.43} STR - \underbrace{0.650}_{0.031} PctEL
+    (\#eq:testmulti)
+\end{equation}\]</span></p>
+<p>Remember, the coefficient on <span class="math inline">\(STR\)</span> in Eq. @ref(eq:testmulti) is the effect on <span class="math inline">\(TestScores\)</span> of a unit change in <span class="math inline">\(STR\)</span>, holding constant the percentage of English Learners in the district. The corresponding 95% confidence interval for coefficient on <span class="math inline">\(STR\)</span> in (2) is <span class="math inline">\(\{-1.10 \pm 1.96 \times 0.43\} = (-1.95,-0.26)\)</span>. And the <span class="math inline">\(t\)</span>-statistic testing <span class="math inline">\(\beta_{STR} = 0\)</span> is <span class="math inline">\(t = -1.10/0.43 = -2.54\)</span>, so we reject the null-hypothesis at the 5% significance level. More evidence for the strength of the <span class="math inline">\(PctEL\)</span> variable can be seen from the fact that, under the null-hypothesis of <span class="math inline">\(\beta_2 = 0\)</span>, the following must hold: <span class="math inline">\(t\text{-statistic} = \frac{\hat{\beta_1}}{\sigma_{\hat{\beta_1}}} = \frac{0.65}{0.03} = 21.7\)</span>, which is a very high number for a <span class="math inline">\(t\)</span>-statistic.</p>
+</section>
+<section id="tests-of-joint-hypotheses" class="level4" data-number="3.2.3.2">
+<h4 data-number="3.2.3.2" class="anchored" data-anchor-id="tests-of-joint-hypotheses"><span class="header-section-number">3.2.3.2</span> Tests of joint hypotheses</h4>
+<p>So, testing of single coefficients is just as before. Now in the Californian school district dataset there is as well a variable called <span class="math inline">\(Expn\)</span> denoting the expenditures per pupil. Consider the following population regression model: <span class="math display">\[\begin{equation}
+TestScore_i = \beta0 + \beta_1 STR_i + \beta_2 Expn_i + \beta_3PctEL_i + u_i
+\end{equation}\]</span> The null hypothesis that “school resources don’t matter” and the alternative that they do, corresponds to:</p>
+<ul>
+<li><span class="math inline">\(H_0:\beta_1 =0\)</span> and <span class="math inline">\(\beta_2 =0\)</span> vs</li>
+<li><span class="math inline">\(H_1:\)</span> either <span class="math inline">\(\beta_1 \neq 0\)</span> or <span class="math inline">\(\beta_2 \neq 0\)</span> or both</li>
+</ul>
+<p>This is a joint hypothesis specifying a value for two or more coefficients. That is, it imposes a restriction on two or more coefficients. In general, a joint hypothesis will involve <span class="math inline">\(q\)</span> restrictions. In the example above, <span class="math inline">\(q = 2\)</span>, and the two restrictions are <span class="math inline">\(\beta_1 = 0\)</span> and <span class="math inline">\(\beta_2 = 0\)</span>. A “common sense” idea is to reject if either of the individual <span class="math inline">\(t\)</span>-statistics exceeds 1.96 in absolute value. But this “one at a time” test isn’t valid: the resulting test rejects too often under the null hypothesis (more than 5%)! That is because the <span class="math inline">\(t\)</span>-statistics themselves are often not independent. Instead, we need a <span class="math inline">\(F\)</span>-statistic, which tests all parts of a joint hypothesis at once. Unfortunately, these types of formulas can become quickly rather complex. Consider the <span class="math inline">\(F\)</span>-test for the special case of the joint hypothesis <span class="math inline">\(\beta_1 = \beta_{1,0}\)</span> and <span class="math inline">\(\beta_2 = \beta_{2,0}\)</span> in a regression with two regressors:</p>
+<p><span class="math display">\[\begin{equation}
+F = \frac{1}{2} \left(\frac{t_1^2 + t_2^2 - 2\hat{\rho}_{t_1,t_2}t_1 t_2}{1-\hat{\rho}^2_{t_1 t_2}}  \right)
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\hat{\rho}_{t_1,t_2}\)</span> estimates the correlation between <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span>. Reject when <span class="math inline">\(F\)</span> is large (typically to be determined from large statistical tables). The F-statistic is large when <span class="math inline">\(t_1\)</span> and/or <span class="math inline">\(t_2\)</span> is large and the F-statistic corrects (in just the right way) for the correlation between <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span>. The formula for more than two <span class="math inline">\(\beta\)</span>’s is nasty unless you use matrix algebra. There is a nice large-sample (<span class="math inline">\(n&gt;50\)</span>) approximate distribution, which is the tail probability of the <span class="math inline">\(\chi^2_q /q\)</span> distribution beyond the <span class="math inline">\(F\)</span>-statistic actually computed.</p>
+<p>Now, <code>STATA</code> does this in a much easier way by invoking the <code>test</code> command <strong>right</strong> after the regression. So, for example, we want to test the joint hypothesis that the population coefficients on <span class="math inline">\(STR\)</span> and expenditures per pupil (<span class="math inline">\(expn\)</span>) are both zero, against the alternative that at least one of the population coefficients is nonzero.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr str expn_stu el_pct, <span class="fu">r</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> str expn_stu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 3, 416)         =     147.20
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.4366
+                                                Ro
+&gt; ot MSE          =     14.353
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+         str |  -.2863992   .4820728    -0.59   0.
+&gt; 553                                             
+&gt;        -1.234002                                
+&gt;                      .661203
+    expn_stu |   .0038679   .0015807     2.45   0.
+&gt; 015                                             
+&gt;         .0007607                                
+&gt;                     .0069751
+      el_pct |  -.6560227   .0317844   -20.64   0.
+&gt; 000                                             
+&gt;        -.7185008                                
+&gt;                    -.5935446
+       _cons |   649.5779   15.45834    42.02   0.
+&gt; 000                                             
+&gt;         619.1917                                
+&gt;                     679.9641
+--------------------------------------------------
+&gt; ----------------------------
+
+
+ ( 1)  str = 0
+ ( 2)  expn_stu = 0
+
+       F(  2,   416) =    5.43
+            Prob &gt; F =    0.0047</code></pre>
+</div>
+</div>
+<p>The output shows an <span class="math inline">\(F\)</span>-statistic with <span class="math inline">\(q=2\)</span> restrictions with outcome 5.43. Do not directly interpret this number, but know that <span class="math inline">\(\text{Prob} &gt; F = 0.0047\)</span> gives the probability that under the null-hypothesis this outcome is produced. So the joint null-hypothesis that both types of expenditures are zero (at the same time), can be rejected at a 5% (and a 1%) significance level. Other types of joint tests can easily be constructed as well. For example, when you want to know whether both coefficient add up to 1, then you would state <code>test str + expn_stu = 1</code>. The final point to make is the <span class="math inline">\(F\)</span>-test in the regression output itself. Here, that is for example <code>F(3, 416) = 147.20</code>. This is a joint test that all variables, except the constant, have no impact. So, <span class="math inline">\(\beta_i = 0\)</span> for all <span class="math inline">\(i\)</span> at the <strong>same time</strong>. It not often that you come across a general regression <span class="math inline">\(F\)</span>-test that does not reject the null-hypothesis. It namely implies that your independent variables do not contain any information about the dependent variable.</p>
+<p>And with the <span class="math inline">\(F\)</span>-test, we now have discussed all regression outcome components displayed by <code>STATA</code>. Most of this information you do not need for your report but we will come back later to this.</p>
+</section>
+</section>
+</section>
+<section id="sec-nonlinear" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-nonlinear"><span class="header-section-number">3.3</span> Non-linear specifications</h2>
+<p>The model we are using is coined the <em>linear</em> regression model, and, indeed, one of the underlying assumptions is that the relations between the independent and dependent are linear. Consider the relation again between test scores and class sizes in the Californian school district data. Using the following code (note now the <code>twoway</code> command that ‘binds’ a scatter plot with a population regression line):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">twoway</span> (<span class="kw">lfit</span> testscr str) (<span class="kw">scatter</span> testscr str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Which provides the following <code>STATA</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/scatterlfit.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">A linear relation</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Indeed, there might be evidence that the relation depicted in Figure @ref(fig:scatterlfitcaschool)—if anything—is linear. But, clearly that is not the case for the relation between test scores and average district income. Namely, the syntax below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">twoway</span> (<span class="kw">lfit</span> testscr avginc) (<span class="kw">scatter</span> testscr avginc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>provides the following <code>STATA</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/scatterincome.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">A non-linear relation</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure @ref(fig:scatterincome) shows a non-linear relation, where the effect of income tapers off (note the resemble with Figure @ref(fig:marginalutility))—or, there is a marginal decreasing effect of average district income on average school test scores. Thus, in affluent neighborhood test scores are higher, but increasingly less so. Of course, you can still try to estimate this with a linear population regression line as in Figure @ref(fig:scatterincome), but this introduces a <strong>bias</strong>. The estimate does not capture that what you want. Namely, it now holds that <span class="math inline">\(E(u \mid X = x) \neq 0\)</span>, because for small <span class="math inline">\(X\)</span>, say <span class="math inline">\(X&lt;10\)</span>, the residuals are negative, for medium sized <span class="math inline">\(X\)</span>s most residuals are positive and for large <span class="math inline">\(X&gt;40\)</span> all residuals are negative again. So, there is a clear relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(u\)</span> and they fail to be independent. This particular form of bias is coined <strong>specification bias</strong>. There is another issue here and that is that the effect on <span class="math inline">\(Y\)</span> of a change in <span class="math inline">\(X\)</span> depends on the value of <span class="math inline">\(X\)</span>—that is, the <em>marginal</em> effect of <span class="math inline">\(X\)</span> is not constant.</p>
+<p>To remedy the specification bias, we will use nonlinear regression population regression <strong>functions</strong> of <span class="math inline">\(X\)</span>, or we estimate a regression function that is nonlinear in <span class="math inline">\(X\)</span>. Here, it is important to see that we do so by <em>transforming</em> <span class="math inline">\(X\)</span>, so the population regression ‘line’. The estimator still remains a linear regression model.</p>
+<p>We will analyse below two complementary and often adopted approaches:</p>
+<ol type="1">
+<li>Using <strong>polynomials</strong> to transform <span class="math inline">\(X\)</span>. That means that the effect is approximated by a quadratic, cubic, or higher-degree polynomial. This approach as well governs to an extent so-called interaction effects which is a special case, where we multiply two different variables.</li>
+<li>Using <strong>logarithmic</strong> transformations of <span class="math inline">\(X\)</span>, where <span class="math inline">\(Y\)</span> and/or <span class="math inline">\(X\)</span> is transformed by taking its logarithm. Here, the main focus is on the interpretation of the <span class="math inline">\(\hat{\beta}\)</span>s, as they change from a unit increase interpretation to a percentages interpretation which often can be found useful.</li>
+</ol>
+<section id="polynomials" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="polynomials"><span class="header-section-number">3.3.1</span> Polynomials</h3>
+<p>Our first approach to non-linear specification is applying polynomials of the variables that we suspect has a non-linear impact. If that is the independent variable <span class="math inline">\(X\)</span>, the we can construct the following <em>linear regression</em> model by using polynomials: <span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_1 + \beta_2 X^2_i + \ldots + \beta_r X_i^r + u_i
+(\#eq:poly)
+\end{equation}\]</span> Note again that this is just the linear regression model—except that the regressors are powers of <span class="math inline">\(X\)</span>! So, in effect we transform the data—actually create new variables <span class="math inline">\(X^r\)</span>—, but the specification in parameters remains linear. Estimation, hypothesis testing, etc. proceeds as in the multiple regression model using OLS. However, the coefficients are now a bit more difficult to interpret. Consider the example of above about the relation between test scores average district income, where <span class="math inline">\(Income_i\)</span> is defined as the average district income in the <span class="math inline">\(i^{\mathrm{th}}\)</span> district (thousands of dollars per capita). For a quadratic specification, we specify the linear regression model as below: <span class="math display">\[\begin{equation}
+TestScore_i = \beta_0 + \beta_1 Income_i + \beta_2 (Income_i)^2 + u_i
+\end{equation}\]</span> For a cubic specification the linear regression model becomes: <span class="math display">\[\begin{equation}
+TestScore_i = \beta_0 + \beta_1 Income_i + \beta_2 (Income_i)^2 +
+\beta_3 (Income_i)^3 + u_i
+\end{equation}\]</span></p>
+<p>First, we focus on the estimation of the quadratic function. In <code>STATA</code> this would look like:</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr c.avginc##c.avginc, <span class="fu">r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 2, 417)         =     428.52
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.5562
+                                                Ro
+&gt; ot MSE          =     12.724
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+      avginc |   3.850995   .2680941    14.36   0.
+&gt; 000                                             
+&gt;          3.32401                                
+&gt;                     4.377979
+             |
+    c.avginc#|
+    c.avginc |  -.0423085   .0047803    -8.85   0.
+&gt; 000                                             
+&gt;         -.051705                                
+&gt;                    -.0329119
+             |
+       _cons |   607.3017   2.901754   209.29   0.
+&gt; 000                                             
+&gt;         601.5978                                
+&gt;                     613.0056
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>Now, it is straightforward to test the null-hypothesis of linearity against the alternative that the regression function is a quadratic. Namely, we only have to consider the <span class="math inline">\(t\)</span>-statistic of the quadratic term. And that is larger than 1.96, so against a 5% significance level we reject the null-hypothesis of linearity.</p>
+<p>Note by the way the syntax <code>c.avginc##c.avginc</code> which seems a bit strange. However, this particular line of code is very useful for later tabulation, plotting and other manipulations of the output. In this way <code>STATA</code> knows that there should be a quadratic effect of the same variable (<code>avginc</code>). The syntax <code>c.</code> denotes that the variable should be considered as continuous instead of as an integer (try it and behold the horrible output). There are four useful operators that you want to know when working with polynomials and interaction effect:</p>
+<ul>
+<li><code>i.</code> operator: this specifies that the following variable is an integers and should be considered on all its level. This actually create indicator or dummies variables</li>
+<li><code>c.</code> operator: this specifies that the following variable is a continuous variables and should be treated as continuous.</li>
+<li><code>#</code> binary operator that specifies an interaction between two variables</li>
+<li><code>##</code> binary operator that specifies both interaction between two variables and the individual variable effect</li>
+</ul>
+<p>Plotting, non-linear population regression lines are a bit tricky. Namely, you want to combine a polynomial with a linear dimension. One way of doing this is as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> hat1 </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> (testscr avginc) || (<span class="kw">line</span> hat1 avginc, <span class="kw">sort</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>where after the regression we <strong>predict</strong> the test scores (and name it something like <code>hat1</code>) and then we ask for a line of the prediction for each value of average district income. Note, though, that we have to <code>sort</code> the prediction from small to large to get a smooth line. And this provides the nice curved population regression line in the following <code>STATA</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/scatterqua.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">A non-linear relation</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But what is now the marginal effect of average district income. That, now, depends on itself. Namely, <span class="math inline">\(\frac{\partial \text{testscore}}{\partial \text{income}} = \beta_1 + \beta_2 \text{income}\)</span>. Another way of seeing this is to compute the effects for different values of <span class="math inline">\(X\)</span> <span class="math display">\[\begin{equation}
+\widehat{TestScore_i} = 607.3 + 3.85 Income_i - 0.0423(Income_i)^2
+\end{equation}\]</span> The predicted change in test scores for a change in income from $5,000 per capita to $6,000 per capita then amounts to: <span class="math display">\[\begin{eqnarray}
+\Delta \widehat{TestScore} &amp;=&amp; 607.3 + 3.85 \times 6 -  0.0423 \times 6^2 \\
+&amp;&amp; - (607.3 + 3.85\times 5 - 0.0423\times 5^2)\\
+&amp;=&amp;3.4
+\end{eqnarray}\]</span></p>
+<p>And if calculate the predicted effects for different values of <span class="math inline">\(X\)</span>, then we get the following table:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>Effect of $X$</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Change in Income (1000 dollar per capita) </th>
+   <th style="text-align:left;"> $\Delta \widehat{TestScore}$ </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> from 5 to 6 </td>
+   <td style="text-align:left;"> 3.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> from 25 to 26 </td>
+   <td style="text-align:left;"> 1.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> from 45 to 46 </td>
+   <td style="text-align:left;"> 0.0 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Thus, the effect of a change in income is greater at low than high income levels (perhaps, a declining marginal benefit of an increase in school budgets?). But, be careful here! What is the effect of a change from 65 to 66? That is quite negative and already Figure @ref(fig:scatterqua) shows that a quadratic specification start to decline again the value of about 50; and perhaps that is not the behaviour that you want. So, with polynomials it is essential not to extrapolate outside the range of the data (and still interpret the outcome).</p>
+<p>The estimation of a cubic specification is straightforward:</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr c.avginc##c.avginc##c.avginc, <span class="fu">r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 3, 416)         =     270.18
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.5584
+                                                Ro
+&gt; ot MSE          =     12.707
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+      avginc |   5.018677   .7073504     7.10   0.
+&gt; 000                                             
+&gt;          3.62825                                
+&gt;                     6.409103
+             |
+    c.avginc#|
+    c.avginc |  -.0958052   .0289537    -3.31   0.
+&gt; 001                                             
+&gt;         -.152719                                
+&gt;                    -.0388913
+             |
+    c.avginc#|
+    c.avginc#|
+    c.avginc |   .0006855   .0003471     1.98   0.
+&gt; 049                                             
+&gt;         3.26e-06                                
+&gt;                     .0013677
+             |
+       _cons |    600.079   5.102062   117.61   0.
+&gt; 000                                             
+&gt;         590.0499                                
+&gt;                      610.108
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>Where if we now want to test the null- hypothesis of linearity, then we have to have invoke an <span class="math inline">\(F\)</span>-test. Namely, the alternative hypothesis is that the population regression is quadratic and/or cubic, that is, it is a polynomial of degree up to 3, so:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Coefficients on <span class="math inline">\(Income^2\)</span> and <span class="math inline">\(Income^3 = 0\)</span></li>
+<li><span class="math inline">\(H_1\)</span>: at least one of these coefficients is nonzero.</li>
+</ul>
+<p>And the outcome below shows that the null-hypothesis that the population regression is linear is rejected at the 5% (and 1%) significance level against the alternative that it is a polynomial of degree up to 3.</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> avginc#avginc avginc#avginc#avginc  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> ( 1)  c.avginc#c.avginc = 0
+ ( 2)  c.avginc#c.avginc#c.avginc = 0
+
+       F(  2,   416) =   37.69
+            Prob &gt; F =    0.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="interaction-variables" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="interaction-variables"><span class="header-section-number">3.3.2</span> Interaction variables</h3>
+<p>Using interaction variables is a special case of polynomial effects. Namely, instead of multiply a variable with itself <span class="math inline">\(X\times X = X^2\)</span>, you now multiple a variable with another variable. And you want to do this to take into account interactions between independent variables. Assume, for example, that a class size reduction is more effective in some circumstances than in others (which is quite conceivable). Perhaps smaller classes help more if there are many English learners (i.e., large migrant communities), who need more individual attention. That is, <span class="math inline">\(\frac{\partial TestScore}{\partial STR}\)</span> might depend on <span class="math inline">\(PctEL\)</span>. More generally, this subsection looks into the fact that the marginal effect of <span class="math inline">\(\frac{\partial Y}{\partial X_1}\)</span> might depend on some other variable <span class="math inline">\(X_2\)</span>.</p>
+<section id="interactions-between-two-binary-variables" class="level4" data-number="3.3.2.1">
+<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="interactions-between-two-binary-variables"><span class="header-section-number">3.3.2.1</span> Interactions between two binary variables</h4>
+<p>First, we look into the simplest (and perhaps most insightful) case of two binary (dummy variables). Consider therefore the following linear regression model: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 +\beta_1 D_{1i} + \beta_2 D_{2i} +u_i,
+\end{equation}\]</span> where both <span class="math inline">\(D_{1i}\)</span> and $ D_{2i}$ are now considered to be binary. Now, of course, <span class="math inline">\(\beta_1\)</span> is the effect of changing <span class="math inline">\(D_1=0\)</span> to <span class="math inline">\(D_1=1\)</span>. So, in this specification, this effect doesn’t depend on the value of <span class="math inline">\(D_2\)</span>. To allow the effect of changing <span class="math inline">\(D_1\)</span> to depend on <span class="math inline">\(D_2\)</span>, we have to include the interaction term <span class="math inline">\(D_{1i} \times D_{2i}\)</span> as a regressor: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 +\beta_1 D_{1i} + \beta_2 D_{2i} + \beta_3 (D_{1i} \times D_{2i}) + u_i
+\end{equation}\]</span></p>
+<p>To interpret now the coefficient <span class="math inline">\(\beta_1\)</span> we compare the two cases for <span class="math inline">\(D_1=0\)</span> to <span class="math inline">\(D_1=1\)</span>” <span class="math display">\[\begin{eqnarray}
+E(Y_i|D_{1i}=0, D_{2i}=d_2) &amp;=&amp; \beta_0 + \beta_2 d_2 \\
+E(Y_i|D_{1i}=1, D_{2i}=d_2) &amp;=&amp; \beta_0 + \beta_1 + \beta_2 d_2 + \beta_3 d_2
+\end{eqnarray}\]</span> If we now subtract them from each other: <span class="math display">\[\begin{equation}
+E(Y_i|D_{1i}=1, D_{2i}=d2) - E(Y_i|D_{1i}=0, D_{2i}=d_2) = \beta_1 + \beta_3 d_2
+\end{equation}\]</span> then we have the marginal effect of <span class="math inline">\(D_1\)</span> which now depends on <span class="math inline">\(d_2\)</span>. The interpretation of <span class="math inline">\(\beta_3\)</span> boils down to being incremental to the effect of <span class="math inline">\(D_1\)</span>, when <span class="math inline">\(D_2 = 1\)</span></p>
+<p>Let us go back to our Californian school district example with the following variables to be used: test scores, student teacher ratio, and English learners. Let: <span class="math display">\[\begin{eqnarray}
+HiSTR &amp;=&amp; 1 \text{ if } STR \geq 20 \text{ and } HiEL = 1 \text{ if }
+PctEL \geq 10 \\
+HiSTR &amp;=&amp; 0 \text{ if } STR &lt; 20 \text{ and } HiEL = 0 \text{ if }
+PctEL &lt; 10 \\
+\end{eqnarray}\]</span> And if we have the estimation results we get the following outcome. <span class="math display">\[\begin{equation}
+\widehat{TestScore} = 664.1 - 18.2 HiEL - 1.9 HiSTR - 3.5(HiSTR \times
+HiEL)
+\end{equation}\]</span> So, how to interpret the various parameters? Perhaps the simple way is to construct the following two-by-two table:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Interpretation of interaction effects with dummies</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">  </th>
+   <th style="text-align:left;"> $HiEL = 0$ </th>
+   <th style="text-align:left;"> $HiEL = 1$ </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> $HiSTR = 0$ </td>
+   <td style="text-align:left;"> $664.1$ </td>
+   <td style="text-align:left;"> $664.1 - 18.2 = 645.9$ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> $HiSTR = 1$ </td>
+   <td style="text-align:left;"> $664.1 - 1.9 = 662.2$ </td>
+   <td style="text-align:left;"> $664.1 - 1.9 - 18.2 - 3.5= 640.5$ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Now, Table @ref(tab:intdummies) specifies for each combination (and there are exactly four of them) of <span class="math inline">\(HiSTR\)</span> and <span class="math inline">\(HiEL\)</span> the average expected test score outcome. Clearly, there are different ‘marginal’ effects of <span class="math inline">\(HiSTR\)</span>. Namely, the effect of <span class="math inline">\(HiSTR\)</span> when <span class="math inline">\(HiEL = 0\)</span> is <span class="math inline">\(-1.9\)</span>, whilst the effect of <span class="math inline">\(HiSTR\)</span> when <span class="math inline">\(HiEL = 1\)</span> is <span class="math inline">\(-1.9 - 3.5 = -5.4\)</span>. This points out that a class size reduction is estimated to have a bigger effect when the percent of English learners is large. However, when you estimate this in <code>STATA</code> then you see that this interaction is not statistically significant, because the <span class="math inline">\(t\)</span>-statistic equals <span class="math inline">\(3.5/3.1 = 1.1\)</span></p>
+</section>
+<section id="interactions-between-continuous-and-binary-variables" class="level4" data-number="3.3.2.2">
+<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="interactions-between-continuous-and-binary-variables"><span class="header-section-number">3.3.2.2</span> Interactions between continuous and binary variables</h4>
+<p>The second case we consider is between a continuous and a binary variable. First assume the following regression model: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 + \beta_1 X_i + \beta_2 D_i + +u_i,
+\end{equation}\]</span> where <span class="math inline">\(D_i\)</span> is a binary variable and <span class="math inline">\(X\)</span> is a continuous variable. As specified above, the effect on <span class="math inline">\(Y\)</span> of <span class="math inline">\(X\)</span> (holding <span class="math inline">\(D\)</span> constant) = <span class="math inline">\(\beta_1\)</span>, which does not depend on <span class="math inline">\(D\)</span>. To allow the effect of <span class="math inline">\(X\)</span> to depend on <span class="math inline">\(D\)</span>, we can include the interaction term <span class="math inline">\(D_i \times X_i\)</span> as a regressor: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 + \beta_1 X_i + \beta_2 D_i  + \beta_3 (D_i \times X_i) + u_i
+\end{equation}\]</span></p>
+<p>What this binary-continuous interaction does is essential create two different population regression lines. Namely, for observations with <span class="math inline">\(D_i= 0\)</span> (the <span class="math inline">\(D = 0\)</span> group or the <span class="math inline">\(D=0\)</span> regression line) there is: <span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i  + u_i,
+\end{equation}\]</span> Whilst for observations with <span class="math inline">\(D_i= 1\)</span> (the <span class="math inline">\(D = 1\)</span> group or the <span class="math inline">\(D = 1\)</span> regression line) the regression line comes down to: <span class="math display">\[\begin{eqnarray}
+Y_i &amp;=&amp;   \beta_0 + \beta_2 + \beta_1 X_i + \beta_3 X_i + u_i \\
+            &amp;=&amp;  (\beta_0 + \beta_2) + (\beta_1 + \beta_3) X_i + u_i
+\end{eqnarray}\]</span></p>
+<p>And these two population regression lines might both differ in the level (the constant) and in the slope of the line. So, there are three possibilities as depicted in Figure @ref(fig:interaction)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/Sheet44.jpg" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">Three possible binary-continuous interaction outcomes</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the first panel (a), <span class="math inline">\(\beta_3 = 0\)</span>, so there is only a level effect. In the second panel (b), both <span class="math inline">\(\beta_2\)</span> and <span class="math inline">\(\beta_3\)</span> are not 0, so there is both a level and a slope effect. The last panel indicates that <span class="math inline">\(\beta_2 = 0\)</span>, meaning that there is only a slope effect. But how to interpreting the coefficients now? Therefore, we take the marginal effect of <span class="math display">\[\begin{equation}
+Y =\beta_0  + \beta_1 X  +\beta_2 D+ \beta_3 (D \times X)
+\end{equation}\]</span> which yields: <span class="math display">\[\begin{equation}
+\frac{\partial Y}{\partial X} = \beta_1 + \beta_3 D
+\end{equation}\]</span> Thus, the effect of <span class="math inline">\(X\)</span> depends on <span class="math inline">\(D\)</span> and <span class="math inline">\(\beta_3\)</span> is the increment to the effect of <span class="math inline">\(X\)</span>, when <span class="math inline">\(D = 1\)</span> (a slope effect)</p>
+<p>To see this in our Californian school district example we now use the variables test scores, student teacher ratio and the as previously defined dummy variable <span class="math inline">\(HiEL\)</span> as: <span class="math display">\[\begin{equation}
+\widehat{TestScore} = 682.2 - 0.97 STR + 5.6 HiEL - 1.28(STR \times HiEL)
+\end{equation}\]</span> Now when <span class="math inline">\(HiEL = 0\)</span> the population regression line amounts to: <span class="math display">\[\begin{equation}
+\widehat{TestScore} = 682.2 - 0.97 STR
+\end{equation}\]</span> And when <span class="math inline">\(HiEL = 1\)</span> the population regression line is: <span class="math display">\[\begin{eqnarray}
+\widehat{TestScore} &amp;=&amp; 682.2 - 0.97 STR + 5.6 - 1.28 STR \\
+&amp;=&amp; 687.8 - 2.25 STR
+\end{eqnarray}\]</span> Thus we have two regression lines: one for each <span class="math inline">\(HiSTR\)</span> group. And the conclusion is that a class size reduction is estimated to have a larger effect when the percent of English learners (migrant communities) is large.</p>
+<p>Hypothesis testing is as before. To test whether the two regression lines have the same slope, the null-hypothesis boils down to the coefficient of <span class="math inline">\(STR \times HiEL\)</span> being zero: the <span class="math inline">\(t\)</span>-statistic of this one become <span class="math inline">\(-1.28/0.97 = -1.32\)</span> and thus we do not reject this test. To test whether the two regression lines have the same intercept, the null-hypothesis becomes the coefficient of <span class="math inline">\(HiEL\)</span> being zero, yielding: <span class="math inline">\(t = -5.6/19.5 = 0.29\)</span>, so we do not reject that null-hypothesis either. Interestingly, the null-hypothesis that the two regression lines are the same—population coefficient on <span class="math inline">\(HiEL = 0\)</span> and population coefficient on yields <span class="math inline">\(STR \times HiEL = 0\)</span>: <span class="math inline">\(F = 89.94 (p-value &lt; .001)\)</span>. So, we reject the joint hypothesis but neither individual hypothesis.</p>
+<p>Finally, the question may arise how to draw such lines as in Figure @ref(fig:interaction). For this the following code is very useful:</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> hiel = (el_pct &gt;= 10)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr c.str##i.hiel, <span class="fu">r</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>margins hiel, <span class="fu">at</span>(str=( 14 ( 2 ) 26 ))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>marginsplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        420
+                                                F(
+&gt; 3, 416)         =      63.67
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.3103
+                                                Ro
+&gt; ot MSE          =      15.88
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+     testscr | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+         str |  -.9684601   .5891016    -1.64   0.
+&gt; 101                                             
+&gt;        -2.126447                                
+&gt;                     .1895268
+      1.hiel |   5.639141   19.51456     0.29   0.
+&gt; 773                                             
+&gt;        -32.72029                                
+&gt;                     43.99857
+             |
+  hiel#c.str |
+          1  |  -1.276613   .9669194    -1.32   0.
+&gt; 187                                             
+&gt;         -3.17727                                
+&gt;                     .6240436
+             |
+       _cons |   682.2458   11.86781    57.49   0.
+&gt; 000                                             
+&gt;         658.9175                                
+&gt;                     705.5742
+--------------------------------------------------
+&gt; ----------------------------
+
+
+Adjusted predictions                              
+&gt;          Number of obs                          
+&gt;                        = 420
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+1._at: str = 14
+2._at: str = 16
+3._at: str = 18
+4._at: str = 20
+5._at: str = 22
+6._at: str = 24
+7._at: str = 26
+
+--------------------------------------------------
+&gt; ----------------------------
+             |            Delta-method
+             |     Margin   std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+    _at#hiel |
+        1 0  |   668.6874   3.701457   180.66   0.
+&gt; 000                                             
+&gt;         661.4115                                
+&gt;                     675.9633
+        1 1  |    656.454    4.85794   135.13   0.
+&gt; 000                                             
+&gt;         646.9048                                
+&gt;                     666.0031
+        2 0  |   666.7505   2.577328   258.70   0.
+&gt; 000                                             
+&gt;         661.6843                                
+&gt;                     671.8167
+        2 1  |   651.9638   3.391411   192.24   0.
+&gt; 000                                             
+&gt;         645.2974                                
+&gt;                     658.6302
+        3 0  |   664.8136   1.536485   432.68   0.
+&gt; 000                                             
+&gt;         661.7933                                
+&gt;                     667.8338
+        3 1  |   647.4737   2.026549   319.50   0.
+&gt; 000                                             
+&gt;         643.4901                                
+&gt;                     651.4572
+        4 0  |   662.8766   .9248105   716.77   0.
+&gt; 000                                             
+&gt;         661.0588                                
+&gt;                     664.6945
+        4 1  |   642.9835    1.18965   540.48   0.
+&gt; 000                                             
+&gt;          640.645                                
+&gt;                      645.322
+        5 0  |   660.9397   1.458111   453.28   0.
+&gt; 000                                             
+&gt;         658.0735                                
+&gt;                     663.8059
+        5 1  |   638.4934   1.851156   344.92   0.
+&gt; 000                                             
+&gt;         634.8546                                
+&gt;                     642.1321
+        6 0  |   659.0028   2.484598   265.24   0.
+&gt; 000                                             
+&gt;         654.1189                                
+&gt;                     663.8867
+        6 1  |   634.0032    3.18456   199.09   0.
+&gt; 000                                             
+&gt;         627.7434                                
+&gt;                     640.2631
+        7 0  |   657.0659   3.605093   182.26   0.
+&gt; 000                                             
+&gt;         649.9794                                
+&gt;                     664.1523
+        7 1  |   629.5131    4.64319   135.58   0.
+&gt; 000                                             
+&gt;          620.386                                
+&gt;                     638.6401
+--------------------------------------------------
+&gt; ----------------------------
+
+
+Variables that uniquely identify margins: str
+hiel</code></pre>
+</div>
+</div>
+<p>So, first, we generate a new dummy variable <code>hiel</code> as discussed above. Then we regress testscores on class size, the new <code>hiel</code> dummy variable and the interaction using the two hashtags. We then ask for the marginal effect of <code>hiel</code>, so for both values of it (being 0 and 1), for all class sizes between 14 and 26 (with steps of 2). Finally, we ask for the plots of the margins using the command <code>marginsplot</code>. This provides the following <code>STATA</code> plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/interactionplot.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">Predicted population regression lines of districts with large and small percentage english learners</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Clearly, Figure @ref(fig:interactionplot) shows that district with more English learners (containing larger migrant communities) have lower test scores overall. Above that, class size seems to have a large negative effect on districts with more English learners as the slope is more negative.</p>
+</section>
+<section id="interactions-between-two-continuous-variables" class="level4" data-number="3.3.2.3">
+<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="interactions-between-two-continuous-variables"><span class="header-section-number">3.3.2.3</span> Interactions between two continuous variables</h4>
+<p>The last case are interaction between two continuous variables and that is always a difficult case of interpret. Starting again with the model: <span class="math display">\[\begin{equation}
+Y_i =\beta_0 + \beta1 X_{1i} +\beta_2 {X_{2i}} +u_i,
+\end{equation}\]</span> where both <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> are continuous and as specified, the effect of <span class="math inline">\(X_1\)</span> doesn’t depend on <span class="math inline">\(X_2\)</span> and the effect of <span class="math inline">\(X_2\)</span> doesn’t depend on <span class="math inline">\(X_1\)</span>. Now, to allow the effect of <span class="math inline">\(X_1\)</span> to depend on <span class="math inline">\(X_2\)</span>, we include the interaction term <span class="math inline">\(X_{1i} \times X_{2i}\)</span> as a regressor. Where, to interpret the coefficients, we take the first derivative of <span class="math inline">\(X_1\)</span> in: <span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \beta_3 (X_{1i}
+\times X_{2i}) + u_i
+\end{equation}\]</span> which yields: <span class="math display">\[\begin{equation}
+\frac{\partial Y}{\partial X} = \beta_1 + \beta_3 X_2
+\end{equation}\]</span> where <span class="math inline">\(\beta_3\)</span> should be interpreted as the increment to the effect of <span class="math inline">\(X_1\)</span> from a unit change in <span class="math inline">\(X_2\)</span>.</p>
+</section>
+</section>
+<section id="logarithmic-transformations" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="logarithmic-transformations"><span class="header-section-number">3.3.3</span> Logarithmic transformations</h3>
+<p>To incorporate non-linear effect, very often logarithmic transformations are used of <span class="math inline">\(Y\)</span> and/or <span class="math inline">\(X\)</span>, where typically we use <span class="math inline">\(\ln(X)\)</span> as the natural logarithm of <span class="math inline">\(X\)</span>. One feature of logarithmic transformations is that they permit modeling relations in percentage terms (like elasticities), rather than linearly. That is because: <span class="math display">\[\begin{equation}
+\ln(x+\Delta x) - \ln(x) = \ln (1 + \frac{\Delta x}{x}) \cong \frac{\Delta x}{x}
+\end{equation}\]</span> Note that this is an approximation, but from calculus we know that <span class="math inline">\(\frac{d \ln(x)}{dx}=\frac{1}{x})\)</span>. And the above approximation works quite well for small numbers. For example, numerically: <span class="math inline">\(\ln(1.01) = .00995 \cong .01\)</span> and <span class="math inline">\(\ln(1.10) = .0953 \cong .10\)</span>, where the latter is still rather close. Now remember the following rules for natural logarithms 1. <span class="math inline">\(\ln(a\times b)= \ln(a)+\ln(b)\)</span> 2. <span class="math inline">\(\ln(\frac{a}{b}) =\ln(a) - \ln(b)\)</span> 3. <span class="math inline">\(\ln(a^\alpha) = \alpha \ln(a)\)</span> 4. <span class="math inline">\(\ln(e^X) = X\)</span>.</p>
+<p>When you encounter a nonlinear model such as the ones adopted in Chapter @ref(surplus) a strategy that often works is log-linearization. That works as follows <span class="math display">\[\begin{equation}
+Y = A K^\alpha L^{1-\alpha} \rightarrow \ln(Y) = \ln(A) + \alpha \ln(K) + (1-\alpha) \ln(L),
+\end{equation}\]</span> where you take the natural logarithm on both sides. There are three different cases of logarithmic regression models as specified in Table @ref(tab:logspecification).</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>Three logarithmic transformation</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Case </th>
+   <th style="text-align:left;"> Population regression model </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> linear-log </td>
+   <td style="text-align:left;"> $Y_i=\beta_0 + \beta_1 \ln(X_i) + u_i$ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> log-linear </td>
+   <td style="text-align:left;"> $\ln(Y_i)=\beta_0 + \beta_1 (X_i) + u_i$ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> log-log </td>
+   <td style="text-align:left;"> $\ln(Y_i)=\beta_0 + \beta_1 \ln(X_i) + u_i$ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Though statistical testing remains the same, the interpretation of the slope coefficient differs in each case. To derive the interpretationwe want to find the marginal effect of <span class="math inline">\(X\)</span> using the first derivative.</p>
+<section id="linear-log-population-regression-model" class="level4" data-number="3.3.3.1">
+<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="linear-log-population-regression-model"><span class="header-section-number">3.3.3.1</span> Linear-log population regression model</h4>
+<p>The linear-log population regression model is specified as: <span class="math display">\[\begin{equation}
+    Y = \beta_0 + \beta_1 \ln(X)
+\end{equation}\]</span> Now take the first derivative: <span class="math display">\[\begin{equation}
+    \frac{\partial Y}{\partial X} = \frac{\beta_1}{X}
+\end{equation}\]</span> so <span class="math display">\[\begin{equation}
+    \beta_1  = \frac{\partial Y}{\partial X / X}
+\end{equation}\]</span> In this case that means that <span class="math inline">\(\beta_1\)</span> should be interpreted as the absolute change of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span> changes with <span class="math inline">\(\beta_1/100\)</span> percent. To illustrate this, consider the case where we take natural logarithm od district income, so we define the new regressor as, <span class="math inline">\(\ln(Income)\)</span></p>
+<p>The model is now linear in <span class="math inline">\(\ln(Income)\)</span>, so the linear-log model can be estimated by OLS, which yields <span class="math display">\[\begin{equation}
+        \widehat{TestScore} = 557.8 + 36.42\times \ln(Income_i)
+\end{equation}\]</span> so an 1% increase in <span class="math inline">\(Income\)</span> is associated with an increase in test scores of 0.36 points on the test. And again, standard errors, confidence intervals, <span class="math inline">\(R^2\)</span>—all the usual tools of regression apply here. But the difficulty in plottin the new regression line remains. Consider the following <code>STATA</code> syntax, where we first have to define the new regressor by invoking the <code>generate</code> command.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lninc = <span class="fu">ln</span>(avginc)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> testscr lninc, <span class="fu">r</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> testhat</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">twoway</span> (<span class="kw">line</span> testhat avginc, <span class="kw">sort</span>) (<span class="kw">scatter</span> testscr avginc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This now provides the following <code>STATA</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/scatterlnincome.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">A non-linear relation</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When you compare @ref(fig:scatterlnincome) with @ref(fig:scatterqua) then you notice that in the case of logarithm the population remains increasing (but less and less steep). This can be considered as an advantage when you want to estimate decreasing (or increasing) return.</p>
+</section>
+<section id="log-linear-population-regression-model" class="level4" data-number="3.3.3.2">
+<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="log-linear-population-regression-model"><span class="header-section-number">3.3.3.2</span> Log-linear population regression model</h4>
+<p>The second case we consider is the log-linear population regression model, as specified by: <span class="math display">\[\begin{equation}
+    \ln(Y) = \beta_0 + \beta_1 X
+\end{equation}\]</span> To find the interpretation of <span class="math inline">\(\beta1_1\)</span>, we again take the first derivative <span class="math inline">\(\frac{\partial Y}{\partial X}\)</span>, but first transform the model like this: <span class="math display">\[\begin{equation}
+    Y = exp( \beta_0 + \beta_1 X )
+\end{equation}\]</span> then take the first derivative: <span class="math display">\[\begin{equation}
+    \frac{\partial Y}{\partial X} = \beta_1  exp( \beta_0 + \beta_1 X ) = \beta_1 Y
+\end{equation}\]</span> and collec terms <span class="math display">\[\begin{equation}
+    \beta_1  = \frac{\partial Y / Y}{\partial X }
+\end{equation}\]</span></p>
+<p>The interpretation of <span class="math inline">\(\beta_1\)</span> now is that one unit change in <span class="math inline">\(X\)</span> causes a <span class="math inline">\(\beta_1\)</span> percentage in <span class="math inline">\(Y\)</span></p>
+</section>
+<section id="log-log-population-regression-model" class="level4" data-number="3.3.3.3">
+<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="log-log-population-regression-model"><span class="header-section-number">3.3.3.3</span> Log-log population regression model</h4>
+<p>Finally, we have our third case, being the log-log population regression model as specified by: <span class="math display">\[\begin{equation}
+    \ln(Y) = \beta_0 + \beta_1 \ln(X)
+\end{equation}\]</span></p>
+<p>To find the interpretation of <span class="math inline">\(\beta1_1\)</span>, we again take the first derivative <span class="math inline">\(\frac{\partial Y}{\partial X}\)</span>, but first transform the model like this: <span class="math display">\[\begin{equation}
+    Y = exp( \beta_0 + \beta_1 \ln(X) )
+\end{equation}\]</span> So <span class="math display">\[\begin{equation}
+    \frac{\partial Y}{\partial X} = \beta_1 /X  exp( \beta_0 + \beta_1 \ln(X) ) = \beta_1 Y /X
+\end{equation}\]</span> and after collecting terms we end up with an <strong>elasticity</strong>: <span class="math display">\[\begin{equation}
+    \beta_1  = \frac{\partial Y / Y}{\partial X / X }
+\end{equation}\]</span></p>
+<p>As an example consider the case when we want to regress ln(test scores) on ln(income). To do so, we first define a new dependent variable, ln(TestScore), and a new regressor, ln(Income) The model is now a linear regression of ln(TestScore) against ln(Income), which can be estimated by OLS as follows <span class="math display">\[\begin{equation}
+\widehat{ln(TestScore)} = 6.336 + 0.0554 \times ln(Income_i),
+\end{equation}\]</span> where the interpretation is that an 1% increase in <span class="math inline">\(Income\)</span> is associated with an increase of .0554% in <span class="math inline">\(TestScore\)</span> (<span class="math inline">\(Income\)</span> up by a factor of 1.01, <span class="math inline">\(TestScore\)</span> up by a factor of 1.000554)</p>
+<p>Suppose that we now want to plot both the log-linear and the log-log specification, then we can use the following syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lninc = <span class="fu">ln</span>(avginc)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lntestscr = <span class="fu">ln</span>(testscr)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lntestscr lninc, <span class="fu">r</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> testhat1</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lntestscr avginc, <span class="fu">r</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> testhat2</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">twoway</span> (<span class="kw">line</span> testhat1 avginc, <span class="kw">sort</span>) (<span class="kw">line</span> testhat2 avginc, <span class="kw">sort</span>) (<span class="kw">scatter</span> lntestscr avginc), <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">"log-log specification"</span> 2 <span class="st">"log-linear specification"</span> 3 <span class="st">"Observations"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which provides the following <code>STATA</code> output.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/scattercompare.png" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption class="figure-caption">A non-linear relation</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the <span class="math inline">\(y\)</span>-axis is on a logarithmic scale here, thus the log-linear specification is now a linear line.</p>
+</section>
+<section id="summary-logarithmic-transformations" class="level4" data-number="3.3.3.4">
+<h4 data-number="3.3.3.4" class="anchored" data-anchor-id="summary-logarithmic-transformations"><span class="header-section-number">3.3.3.4</span> Summary: logarithmic transformations</h4>
+<p>We have seen three different cases of logarithmic specification, differing in whether <span class="math inline">\(Y\)</span> and/or <span class="math inline">\(X\)</span> is transformed by taking logarithms. Now, the regression is linear in the new variable(s) <span class="math inline">\(\ln(Y)\)</span> and/or <span class="math inline">\(\ln(X)\)</span>, and the coefficients can be estimated by OLS where hypothesis tests and confidence intervals are now implemented and interpreted ‘as usual’. Only the interpretation of the coefficients differs from case to case and is directly related to percentage changes (growth) and elasticities. Oftentimes, the choice of specification, however, should be guided by judgment (which interpretation makes the most sense in your application?), tests, and plotting predicted values. Sometimes, though, you have a structural economic model such as Equation @ref(eq:directutility), which defines the type of specification you should use. Finally, see that in economics many models exists with decreasing or increasing return to scale and that these are very closely related with logarithmic specifications.</p>
+</section>
+</section>
+</section>
+<section id="sec-fixedeffects" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-fixedeffects"><span class="header-section-number">3.4</span> Using fixed effects in panel data</h2>
+<p>Multivariate regression is a powerfull tool for controlling for the effect of variables for which we have data. But often we do not have data on what we suspect might be important—data, such as individual characteristics like ambition, intelligence, drive or stamina. Or regional of country data, where the type of soil, the ruggedness (hilliness), or population density determine to a large extent the behaviour of people living on it. If we do not have this type of data, then it not always the case that everything is lost. Especially, when we have repeated observations, so observations of the same entity throughout time. This is referred to as panel data and requires one additional subscript <span class="math inline">\(t\)</span> as in <span class="math inline">\(X_{it}\)</span> indicating the observation <span class="math inline">\(X\)</span> on individual made at time <span class="math inline">\(t\)</span>. To understand why this sometimes works, we temporarily change to another dataset and that is the ‘fatality’ data collected by <span class="citation" data-cites="levitt2001dangerous">Levitt and Porter (<a href="references.html#ref-levitt2001dangerous" role="doc-biblioref">2001</a>)</span> and deals with the relation between drunk driving and fatal accidents in the States of the US between 1982 and 1988. For this particular example we look at the impact of the ‘beer tax’, measured as the real tax in dollars on a case of beer, on ‘fatality’, measured as the number of annual traffic deaths per 10,000 people in the population of each stata. For this we first read the data and manipulate the mortality variable</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"./data/fatality.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> fatality = allmort/pop * 10000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then run a simple regression:</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> fatality beertax, <span class="kw">robust</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression                               Nu
+&gt; mber of obs     =        336
+                                                F(
+&gt; 1, 334)         =      47.59
+                                                Pr
+&gt; ob &gt; F          =     0.0000
+                                                R-
+&gt; squared         =     0.0934
+                                                Ro
+&gt; ot MSE          =     .54374
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+    fatality | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+     beertax |   .3646054   .0528524     6.90   0.
+&gt; 000                                             
+&gt;         .2606399                                
+&gt;                      .468571
+       _cons |   1.853308   .0471297    39.32   0.
+&gt; 000                                             
+&gt;         1.760599                                
+&gt;                     1.946016
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>But these outcomes are very strange. For every dollar increase in tax, number of fatal accidents per 10,000 people increases with 0.36, which is statistically significantly different from 0. What is going on here. Most likely this effect is biased because of omitted variable bias. States in the US differ widely in terms of population density, environment, institutions, religion, poverty, and so on and so forth. And Those state characteristics might influence both the variables beertax and fatality.</p>
+<p>Fortunately, for each state we have yearly data. So, that is 7 observations per stata and we can make use of that by using fixed effects, which is a very common technique in the social sciences—especially in economics. We model the use of fixed effects in this example as follows: <span class="math display">\[\begin{equation}
+\text{fatality}_{it} = \beta_0 + \beta_1\text{beertax}_{it} + \beta_3 S_1 + \ldots + \beta_51 S_{48} + u_{it},
+\end{equation}\]</span> where <span class="math inline">\(S_i\)</span> denote indicator (dummies) for each state which constitute the fixed effects. In total there are 48 states in this dataset, so we have 48 dummies. Note that these fixed effects only depend on the state variation, not on time variation. So, essentially what these fixed effects capture is all state specific characteristics which are constant over time. And most of the characteristics’ examples given above do not vary that much over time, so by using these state fixed effects we can <strong>control</strong> for them. In <code>STATA</code> you can estimate this in a straightforward way as <code>regress fatality beertax i.state, robust</code>, but this lots of statistical output that you are usually not interested in. Almost just as easy would be is to invoke the <code>areg</code> command, where you specifically state that the state variable should be used as dummies but not shown using <code>absorb(state)</code>: and then run a simple regression:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">areg</span> fatality beertax, absorb(state) <span class="kw">robust</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression, absorbing indicators           
+&gt;   Number of obs                                 
+&gt;                     =    336
+Absorbed variable: state                          
+&gt;   No. of categories                             
+&gt;                     =     48
+                                                  
+&gt;   F(1, 287)                                     
+&gt;                     =  10.41
+                                                  
+&gt;   Prob &gt; F                                      
+&gt;                     = 0.0014
+                                                  
+&gt;   R-squared                                     
+&gt;                     = 0.9050
+                                                  
+&gt;   Adj R-squared                                 
+&gt;                     = 0.8891
+                                                  
+&gt;   Root MSE                                      
+&gt;                     = 0.1899
+
+--------------------------------------------------
+&gt; ----------------------------
+             |               Robust
+    fatality | Coefficient  std. err.      t    P&gt;
+&gt; |t|                                             
+&gt;         [95% con                                
+&gt;                 f. interval]
+-------------+------------------------------------
+&gt; ----------------------------
+     beertax |  -.6558737   .2032797    -3.23   0.
+&gt; 001                                             
+&gt;        -1.055982                                
+&gt;                    -.2557655
+       _cons |   2.377075   .1051516    22.61   0.
+&gt; 000                                             
+&gt;         2.170109                                
+&gt;                     2.584041
+--------------------------------------------------
+&gt; ----------------------------</code></pre>
+</div>
+</div>
+<p>Now, see what happens with the coefficient of the beer tax variable. It changes sign! So from positive it becomes negative. That is how <strong>disruptive</strong> omitted variable bias can be. Also see that by including all these state fixed effects, the <span class="math inline">\(\bar{R^2}\)</span> now increase enormously to 91%, which does make sense because the states explain the variation in fatality rate to a large extent (e.g., compare Kansas with Connecticut).</p>
+<p>This is just a snapshot of the use of fixed effects in panel data, but for now this is enough. But for now, know that the use of fixed effects can go a long way in addressing omitted variable bias.</p>
+</section>
+<section id="conclusion-and-discussion" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="conclusion-and-discussion"><span class="header-section-number">3.5</span> Conclusion and discussion</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-levitt2001dangerous" class="csl-entry" role="doc-biblioentry">
+Levitt, Steven D, and Jack Porter. 2001. <span>“How Dangerous Are Drinking Drivers?”</span> <em>Journal of Political Economy</em> 109 (6): 1198–1237.
+</div>
+<div id="ref-mcelreath2020statistical" class="csl-entry" role="doc-biblioentry">
+McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in r and Stan</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-pearl2009causality" class="csl-entry" role="doc-biblioentry">
+Pearl, Judea. 2009. <em>Causality</em>. Cambridge university press.
+</div>
+<div id="ref-stock2003introduction" class="csl-entry" role="doc-biblioentry">
+Stock, James H, Mark W Watson, et al. 2003. <em>Introduction to Econometrics</em>. Vol. 104. Addison Wesley Boston.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>With right hand side we mean on the right side of the equal sign <span class="math inline">\(=\)</span>. It is often abbreviated with RHS.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is not entirely true. Increasing the R<span class="math inline">\(^2\)</span> explains <strong>in-sample</strong> variation better, not necessarily <strong>out-of-sample</strong>. The latter is really what matters for prediction and this is the focus of many machine learning techniques. Note that this argument is directly related with the regression towards the mean argument made in <a href="linear_regression.html#sec-genesis"><span>Section&nbsp;2.3.1</span></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(Z\)</span> can be both known or unknown, so that is why we change from <span class="math inline">\(U\)</span> to <span class="math inline">\(Z\)</span><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>In econometric textbooks, as, e.g, in <span class="citation" data-cites="stock2003introduction">Stock, Watson, et al. (<a href="references.html#ref-stock2003introduction" role="doc-biblioref">2003</a>)</span>, this condition is weakened to only being correlation (<span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span> are correlated). However, if the directed arrow goes from <span class="math inline">\(STR\)</span> into <span class="math inline">\(U\)</span> in <a href="#fig-unobshet">Figure&nbsp;<span>3.2</span></a> then that would lead to something else than omitted variables, namely to a difference between a direct (<span class="math inline">\(\text{STR} \longrightarrow \text{testscore}\)</span>) and an indirect effect (<span class="math inline">\(\text{STR} \longrightarrow U \longrightarrow \text{testscore}\)</span>).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./linear_regression.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regression Analysis in the Social Sciences</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./assessment.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Specification and Assessment Issues</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

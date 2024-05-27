@@ -1,0 +1,33 @@
+# Preface {.unnumbered}
+
+## What {-}
+
+This syllabus provides the course material for the course **Applied Econometrics (online)**. With this course I would like to bridge the gap between theoretical statistics and applied econometrics. Moreover, I focus as well on putting all this in practice when performing empirical research. As such this course can as well be seen as preparation for an economic master, specifically the master **Spatial, Transport and Enviroment Economics**. But above all, the course aims to provide students with some tools that I see as very useful for research; not only in the socio-economic sciences but outside them as well.
+
+As we only have a limited amount of time available for this course, the amount of topics we can deal with is by nature restricted. I decided to focus on the basics of applied econometrics and as such this course builds upon the foundations of (introductionary) statistical courses students in most programs received in the first or second bachelor year. But now we challenge the student to build more elaborate statistical models where specific attention is given to *presentation* and *interpretation* of the results. 
+
+## Why {-}
+
+Although there are many and very good introductory textbooks on applied econometrics [for a full course I recommend @stock2003introduction], these textbooks are either too large, not applied enough or not focused on the spatial domain. Apart from that there are two reasons I we wanted to write my own material. First, usually less time is spent on why certain, and at first sight very restrictive, *assumptions* are made. I want to bridge that gap and provide the student with more intuition on where models, evidence, and finally perhaps the "truth" (if there is such a thing) comes from. Second, how to *present* statistical evidence and the *interpretation* of that evidence I think is very important but usually not given much attention.
+
+## For Whom {-}
+
+This syllabus assumes that the reader has a basic working knowledge of statistics and some calculus (typically those method courses students enjoy in their first year). The book can however be read as stand-alone, although that requires more attentive reading and especially practising. Where we think it is necessary we provide (references to) background material. 
+
+```{r}
+#| include: FALSE
+#| warning: FALSE
+#| message: FALSE
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'kableExtra', 'tidyverse'
+), 'packages.bib')
+```
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+#| echo: FALSE
+library(kableExtra)
+library(tidyverse)
+```

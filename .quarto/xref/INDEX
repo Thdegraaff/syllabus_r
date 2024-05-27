@@ -1,0 +1,26 @@
+{
+  "intro.qmd": {
+    "intro.html": "eac545f4"
+  },
+  "index.qmd": {
+    "index.html": "4364d3f7"
+  },
+  "linear_regression.qmd": {
+    "linear_regression.html": "780f65a0"
+  },
+  "multivariate.qmd": {
+    "multivariate.html": "41bcdf5a"
+  },
+  "assessment.qmd": {
+    "assessment.html": "2a8c0d6b"
+  },
+  "conclusion.qmd": {
+    "conclusion.html": "99ac958c"
+  },
+  "references.qmd": {
+    "references.html": "3aa0b7b8"
+  },
+  "appendix.qmd": {
+    "appendix.html": "9e08476b"
+  }
+}

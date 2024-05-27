@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Applied Econometrics with R (online) - Appendix A — Reviewing probability and statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Reviewing probability and statistics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Econometrics with <code>R</code> (online)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regression Analysis in the Social Sciences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modeling in the Social Sciences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Specification and Assessment Issues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">In conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Reviewing probability and statistics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#reviewing-probability" id="toc-reviewing-probability" class="nav-link active" data-scroll-target="#reviewing-probability"><span class="header-section-number">A.1</span> Reviewing probability</a>
+  <ul>
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">A.1.1</span> Probability</a></li>
+  <li><a href="#population-random-variables" id="toc-population-random-variables" class="nav-link" data-scroll-target="#population-random-variables"><span class="header-section-number">A.1.2</span> Population &amp; random variables</a></li>
+  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"><span class="header-section-number">A.1.3</span> Distribution functions</a></li>
+  <li><a href="#conditional-distributions-and-conditional-means" id="toc-conditional-distributions-and-conditional-means" class="nav-link" data-scroll-target="#conditional-distributions-and-conditional-means"><span class="header-section-number">A.1.4</span> Conditional distributions and conditional means</a></li>
+  </ul></li>
+  <li><a href="#sec-sampling" id="toc-sec-sampling" class="nav-link" data-scroll-target="#sec-sampling"><span class="header-section-number">A.2</span> Sampling in frequentist statistics</a>
+  <ul>
+  <li><a href="#the-sampling-distribution-of-bary" id="toc-the-sampling-distribution-of-bary" class="nav-link" data-scroll-target="#the-sampling-distribution-of-bary"><span class="header-section-number">A.2.1</span> The sampling distribution of <span class="math inline">\(\bar{Y}\)</span></a></li>
+  <li><a href="#example-simple-binomial-random-variables" id="toc-example-simple-binomial-random-variables" class="nav-link" data-scroll-target="#example-simple-binomial-random-variables"><span class="header-section-number">A.2.2</span> Example: simple binomial random variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Reviewing probability and statistics</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-reviewstat" class="quarto-section-identifier">Appendix A — Reviewing probability and statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This appendix very briefly reviews the statistical knowledge you need for applied econometrics. We assume you had an introductory course in statistics already and will go over this material very quickly.</p>
+<section id="reviewing-probability" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="reviewing-probability"><span class="header-section-number">A.1</span> Reviewing probability</h2>
+<section id="probability" class="level3" data-number="A.1.1">
+<h3 data-number="A.1.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">A.1.1</span> Probability</h3>
+<p>As a definition of probability we use the concept of <em>empirical probability</em> which is the proportion of time that something (a specific outcome or event <span class="math inline">\(X\)</span>) occurs in the long-run of total events. Usually it is give by:</p>
+<p><span class="math display">\[\begin{equation}
+\text{probability} = p = \frac{\text{Number of times specific event $X$ happens}}{\text{Total amount of events that can happen}}
+\end{equation}\]</span></p>
+<p>Now probabilities are <em>defined</em> by a set of definations (axioms). These are:</p>
+<ol type="1">
+<li>Probabilities, <span class="math inline">\(p\)</span>, are always between 0 and 1. So, <span class="math inline">\(0 \leq p \leq 1\)</span></li>
+<li>If something does not happen, then <span class="math inline">\(p = 0\)</span></li>
+<li>If something always happens, then <span class="math inline">\(p = 1\)</span></li>
+<li>Probabilities for the total amount of events always add up to <span class="math inline">\(1\)</span>. So, if the probability that something happens is <span class="math inline">\(p\)</span>, then the probabilities that it will not happen is <span class="math inline">\(1 -p\)</span> (see that <span class="math inline">\(p + 1 - p = 1\)</span>)</li>
+</ol>
+</section>
+<section id="population-random-variables" class="level3" data-number="A.1.2">
+<h3 data-number="A.1.2" class="anchored" data-anchor-id="population-random-variables"><span class="header-section-number">A.1.2</span> Population &amp; random variables</h3>
+<p>In general we see a population as the the group or collection of all possible entities of interest (school districts, inhabitants of the Netherlands, homeowners) and we will think of populations as infinitely large (<span class="math inline">\(\infty\)</span>). From this population we then <em>sample</em> specific observations. This sample contains then a <strong>random</strong> variable <span class="math inline">\(Y\)</span>, which denotes a characteristics of the entity (district average test score, prices of houses, prices of meat). An important feature is that the specific contents of the sample is unknown, that is before measurement (<span class="math inline">\(y\)</span>), after measurement the sample is know and is called data.</p>
+<p>So, a random variable (also called a stochastic variable) is a mathematical formalization of something that depends on <strong>random</strong> outcomes. Unfortunately, randomness is not clearly defined and depends on specific scientific philosophical schools. The scientific philosophical school we implicitly assume in this course—and, in fact, in most statistical courses—is that of frequentist statistics. Here we assume that all things we measure are <em>intrinsically</em> random. In fact, this is an <em>ontological</em> argument—in other words, what are our beliefs in the state of the world. Because all things we measure are random, every time we measure something our measurements are (slightly) different. However, the more we measure, the more precise we <em>know</em> something. But there is still randomness.</p>
+<p>In general, there are two types of random variables. First, there are <em>discrete</em> random variables, where outcomes can be counted, such as <span class="math inline">\(0, 1, 2, 3, \ldots\)</span> and <em>continuous</em> random variables, where outcomes can be any real number.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="distribution-functions" class="level3" data-number="A.1.3">
+<h3 data-number="A.1.3" class="anchored" data-anchor-id="distribution-functions"><span class="header-section-number">A.1.3</span> Distribution functions</h3>
+<p>Random variables are governed by <em>distribution functions</em> which are mathematical functions that provides the probabilities of occurrence of all different possible outcomes of a specific <em>experiment</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>: e.g.&nbsp;for a discrete distribution, <span class="math inline">\(f(x) = \Pr(Y = y)\)</span> <span class="math inline">\(\forall y\)</span>. Or, in other words, the distribution function maps discrete outcomes to probabilities. For continuous distribution function, this is not possible as there an infinite number of possible outcomes, so that means that for each specific <span class="math inline">\(y\)</span> must yield <span class="math inline">\(\Pr(Y = y) = 0\)</span>. Therefore, with continuous distributions, often the <em>cumulative distribution function</em> is used, which is defined as <span class="math inline">\(F(x) = \Pr(Y \leq y)\)</span>. This is why we always use the surface of areas under the <em>normal</em> distribution function.</p>
+<p>Distribution functions have characteristics of which the most important are:</p>
+<ul>
+<li>The mean, also known as the expected value (or expectation) of <span class="math inline">\(Y\)</span>. It is usually denoted as <span class="math inline">\(E(Y) = \mu_Y\)</span> and can as well be interpreted as the long-run average value of <span class="math inline">\(Y\)</span> over repeated realizations of <span class="math inline">\(Y\)</span>: <span class="math inline">\(\frac{1}{n}\sum_{i = 1}^{n}y_{i}\)</span></li>
+<li>The variance, which is denoted as <span class="math inline">\(E(Y - \mu_Y)^2\)</span>. Usually it is associated with the symbol <span class="math inline">\(\sigma^2_Y\)</span> and provides a measure of the squared spread of the distribution. If we take the square root then we have the standard deviation (<span class="math inline">\(=\sqrt{\text{variance}} = \sigma_Y\)</span>). For a symmetrical normal distribution, it is useful to know that the mean plus or minus 1 time the standard deviation governs about <span class="math inline">\(2/3\)</span> of all probability while the mean plus or minus 2 times the standard deviation governs about 95% of all probability associated with that random variable.</li>
+</ul>
+<p>Now, in statistics we are usually related in relations between random variables, and luckily most entities in real life are related. To capture that relation we need two concepts, joint distributions and covariance. If we assume that that random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> have a joint distribution then the covariance between <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> is: <span class="math display">\[\begin{equation}
+cov(X,Z) = E[(X- \mu_X)(Z- \mu_Z)] = \sigma_{XZ}
+\end{equation}\]</span></p>
+<p>Note that this covariance is a measure of the <em>linear</em> association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> and that its units are units of <span class="math inline">\(X\)</span> times units of <span class="math inline">\(Z\)</span>. <span class="math inline">\(cov(X,Z) &gt; 0\)</span> means a positive relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>, and finally if <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are independently distributed, then <span class="math inline">\(cov(X,Z) = 0\)</span>. Note that the covariance of a random variable with itself is just its variance: <span class="math display">\[\begin{equation}
+cov(X,X) = E[(X-\mu_X)(X - \mu_X)] = E[(X - \mu_X)^2] = \sigma^2_X
+\end{equation}\]</span></p>
+<p>However, the covariance is still measured in the units of <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>. To correct for that, we often use the correlation coefficient, defined by: <span class="math display">\[\begin{equation}
+corr(X,Z) = \frac{cov(X,Z)}{\sqrt{var(X)var(Z)}} = \frac{\sigma_{XZ}}{\sigma{_X}\sigma{_Z}} = r_{XZ}
+\end{equation}\]</span> where <span class="math inline">\(-1 \leq corr(X,Z) \leq 1\)</span>, a <span class="math inline">\(corr(X,Z) = 1\)</span> means perfect positive linear association, a <span class="math inline">\(corr(X,Z) = -1\)</span> means perfect negative linear association, and a <span class="math inline">\(corr(X,Z) = 0\)</span> denotes no linear association.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corrcoef" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corrcoef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./figures/Sheet27.png" class="img-fluid figure-img" width="504">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrcoef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.1: The correlation coefficient and the relation between observed <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It is very important to notice that a correlation coefficient measures <strong>linear</strong> association. So, <span class="math inline">\(corr(X,Z) = 0\)</span> does not mean that there is no relation, there is only no linear correlation. This is illustrated by <a href="#fig-corrcoef" class="quarto-xref">Figure&nbsp;<span>A.1</span></a>. In panel (a) there is clearly a positive relation, and panel (b) shows a negative relation, but what about panel (d)? Here, the correlation coefficient is 0, just as in panel (c), but obviously there is a clear <strong>non-linear</strong> relation.</p>
+</section>
+<section id="conditional-distributions-and-conditional-means" class="level3" data-number="A.1.4">
+<h3 data-number="A.1.4" class="anchored" data-anchor-id="conditional-distributions-and-conditional-means"><span class="header-section-number">A.1.4</span> Conditional distributions and conditional means</h3>
+<p>An important notion in applied statistics (and in applied econometrics) is that of the conditional distribution, that is the distribution of <span class="math inline">\(Y\)</span>, given value(s) of some other random variable, <span class="math inline">\(X\)</span>. For example, in our California school example, we might want to know something about the distribution of test scores, <strong>given</strong> that <span class="math inline">\(STR &lt; 20\)</span>. Therefore, we use the concept of conditional mean, which is defined as the mean of a conditional distribution = <span class="math inline">\(E(Y\mid X = x)\)</span>. Note here the <span class="math inline">\(\mid\)</span> symbol—it means the expected value of <span class="math inline">\(Y\)</span> <strong>given</strong> that a random variable <span class="math inline">\(X\)</span> is measured with <span class="math inline">\(x\)</span>. As an example: <span class="math inline">\(E(Test scores \mid STR &lt; 20)\)</span> which denotes the mean of test scores among districts with small class sizes. We also denote this with the <em>conditional</em> mean.</p>
+<p>Now, if we want to know the difference in means, then we can denote that with <span class="math display">\[\begin{equation}
+\Delta = E(Test scores \mid STR &lt; 20)-  E(Test scores \mid STR \geq 20),
+\end{equation}\]</span> which is a very important concept in applied economics as it resembles two groups of which one received <em>treatment</em> and the other one not. Other examples of the use of conditional means: difference in wages among gender (in the possible case of a glass ceiling for females) and mortality rate differences between those who are treated and those who are. Now if <span class="math inline">\(E(X \mid Z)\)</span> is constant, then <span class="math inline">\(corr(X,Z) = 0\)</span>. We then say that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are independent.</p>
+</section>
+</section>
+<section id="sec-sampling" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="sec-sampling"><span class="header-section-number">A.2</span> Sampling in frequentist statistics</h2>
+<p>So, we mentioned above that we sample from the population which is assumed to be infinitely large. Now, how does this sampling then carry over to statistics. For that we need a statistical framework based on <em>random sampling</em>. First, choose an individual, <span class="math inline">\(i\)</span>, (or district, firm, etc.) at random from the population. Now, prior to sample selection, the value of what we want to know <span class="math inline">\(Y_i\)</span> is random because the individual is <strong>randomly</strong> selected. Once the individual is selected and the value of <span class="math inline">\(Y\)</span> is observed, then <span class="math inline">\(Y\)</span> is just a number—not random anymore but data. And then we say it has the value <span class="math inline">\(y\)</span>. Hence the notation <span class="math inline">\(\Pr(Y = y\)</span>).</p>
+<p>If we sample multiple entities, then we can construct a data set that looks like <span class="math inline">\((y_1, y_2,\dots, y_n)\)</span>, where <span class="math inline">\(y_i\)</span> = value of <span class="math inline">\(y\)</span> for the <span class="math inline">\(i^{\mathrm{th}}\)</span> individual (district, entity) sampled. Again the lower case here denotes a realisation—the dataset. Now, we want to know what the distribution of the random variables <span class="math inline">\(Y_1, \ldots, Y_n\)</span> is under simple random sampling. Note that because entities (say individuals) #1 and #2 are selected at random, the value of <span class="math inline">\(Y_1\)</span> has no information content for <span class="math inline">\(Y_2\)</span>. Thus: <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independently distributed. And if <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> come from the same distribution, that is, <span class="math inline">\(Y_1\)</span>, <span class="math inline">\(Y_2\)</span> are identically distributed, then we say that, under simple random sampling, <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independently and identically distributed (<em>i.i.d.</em>). More generally, under simple random sampling, <span class="math inline">\(Y_i\)</span>, <span class="math inline">\(i = 1,\ldots, n\)</span>, are <em>i.i.d</em>—this term always come back in all sorts of statistics.</p>
+<p>This simple framework already allows rigorous statistical inferences about, e.g., <em>the mean</em> <span class="math inline">\(\bar{Y}\)</span> of population distributions using a sample of data from that population. The next subsection does this because the mean is not only an important statistic, but because the results can be immediately transferred to the regression context as well.</p>
+<section id="the-sampling-distribution-of-bary" class="level3" data-number="A.2.1">
+<h3 data-number="A.2.1" class="anchored" data-anchor-id="the-sampling-distribution-of-bary"><span class="header-section-number">A.2.1</span> The sampling distribution of <span class="math inline">\(\bar{Y}\)</span></h3>
+<p>Now because <span class="math inline">\(\bar{Y}\)</span> is formed by a sample of <span class="math inline">\(\{Y_i\}'s\)</span> it is as well a random variable, and its properties are determined by the <em>sampling distribution</em> of <span class="math inline">\(\bar{Y}\)</span>. Again, we assume that the elements in the sample are drawn at random, that thus the values of <span class="math inline">\((Y_1,\ldots, Y_n)\)</span> are random, and that thus functions of <span class="math inline">\((Y_1,\ldots, Y_n)\)</span>, such as <span class="math inline">\(\bar{Y}\)</span>, are random: had a different sample been drawn, they would have taken on a different value. Finally, the distribution of <span class="math inline">\(\bar{Y}\)</span> over different possible samples of size <span class="math inline">\(n\)</span> is called the sampling distribution of <span class="math inline">\(\bar{Y}\)</span>, which underpins all of <em>frequentists</em> statistics.</p>
+</section>
+<section id="example-simple-binomial-random-variables" class="level3" data-number="A.2.2">
+<h3 data-number="A.2.2" class="anchored" data-anchor-id="example-simple-binomial-random-variables"><span class="header-section-number">A.2.2</span> Example: simple binomial random variables</h3>
+<p>So how does this work. Let’s take the easiest statistical example: coin flipping, where the coin is this case is notoriously biased. Suppose the random variable <span class="math inline">\(Y\)</span> takes on 0 (head) or 1 (tails) with the following probability distribution, <span class="math inline">\(\Pr[Y = 0] = 0.22\)</span>, <span class="math inline">\(\Pr(Y =1) = 0.78\)</span>. Then the mean and variance are given by: <span class="math display">\[\begin{eqnarray}
+\mu_{Y} &amp;=&amp; p \times 1 + (1-  p) \times 0 = p = 0.78 \notag\\
+\sigma^2_Y&amp;=&amp; E[Y - \mu_{Y}]^2 = p(1 - p) \notag\\
+&amp;=&amp; 0.78 \times 0.22 = 0.17
+\end{eqnarray}\]</span> But this is only one throw (<span class="math inline">\(throw = 1\)</span>). We would like to have multiple observations to derive at our sampling distribution of <span class="math inline">\(\bar{Y}\)</span>, which we assume to depend on the number of throws, <span class="math inline">\(n\)</span>.</p>
+<p>Consider therefore first the case of <span class="math inline">\(throw = 2\)</span>. The sampling distribution of <span class="math inline">\(\bar{Y}\)</span> is, <span class="math display">\[\begin{eqnarray}
+\Pr(\bar{Y}  = 0) &amp;= 0.22^2 &amp;= 0.05 \notag \\
+\Pr(\bar{Y}  = 1/2) &amp;=  2 \times 0.22 \times 0.78 &amp;= 0.34 \notag \\
+\Pr(\bar{Y}  = 1) &amp;= 0.78^2 &amp;= 0.61.
+\end{eqnarray}\]</span></p>
+<p>but this start to become boring as the number of throws increases. Therefore, we turn to <code>R</code>. Let’s first check for <span class="math inline">\(throw = 2\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>throw <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># perform random sampling</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(reps, <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> throw, <span class="at">prob =</span> <span class="fl">0.78</span>) )<span class="sc">/</span>throw <span class="co"># 2 x 10000 sample matrix</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create histogram</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(samples, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"steelblue"</span> , </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq =</span> F,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">10</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">yaxt =</span> <span class="st">'n'</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">''</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Sample Averages"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-coin2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="appendix_files/figure-html/fig-coin2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.2: Sampling distribution when you throw a coin 2 times
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The first two lines of this code sets the number of throws (<code>throws</code>) and how often I do this (<code>reps</code>). So, I throw a coin twice, for 10000 times in a row. The third line generates the outcomes, which in this case are no heads (0), head once (1), or two heads (2). To arrive at probabilities I divide by 2 again. Finally, the third line gives a histogram of the density.</p>
+<p>But what if I do this a 100 times, so <span class="math inline">\(throw = 100\)</span>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>throw <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># perform random sampling</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(reps, <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> throw, <span class="at">prob =</span> <span class="fl">0.78</span>) )<span class="sc">/</span>throw <span class="co"># 2 x 10000 sample matrix</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create histogram</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(samples, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"steelblue"</span> , </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq =</span> F,,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">yaxt =</span> <span class="st">'n'</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">''</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Sample Averages"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-coin100" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="appendix_files/figure-html/fig-coin100-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.3: Sampling distribution when you throw a coin 100 times
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The histogram can be seen now in <a href="#fig-coin100" class="quarto-xref">Figure&nbsp;<span>A.3</span></a>.</p>
+<p>But isn’t this strange. We can now observe a couple of things. First, the average of the distribution of Figure <a href="#fig-coin100" class="quarto-xref">Figure&nbsp;<span>A.3</span></a> is very close to 0.78, which is the actual probability that our biased coin provides tails. But, more importantly the distribution starts to look like a symmetric normal distribution. And we started with a binomial distribution!</p>
+<p>This is the result of two amazing statistical theorems:</p>
+<ol type="1">
+<li><strong>The law of large numbers</strong>: the average of the results obtained from a large number of trials should be close to the expected value and tends to become closer to the expected value as more trials are performed. That is, if there a no biases in the experiment itself. It also means that with more experiments the precision become better, or the variance decreases. In general this implies that:
+<ul>
+<li><span class="math inline">\(\bar{Y}\)</span> is an <em>unbiased</em> estimator of <span class="math inline">\(\mu_Y\)</span> (that is, <span class="math inline">\(E(\bar{Y}) = \mu_Y\)</span>)</li>
+<li>var(<span class="math inline">\(\bar{Y}\)</span>) is <em>inversely proportional</em> to <span class="math inline">\(n\)</span></li>
+<li>The standard error associated with <span class="math inline">\(\bar{Y}\)</span> is <span class="math inline">\(\sqrt{\frac{\sigma_Y^2}{n}}\)</span> (that means that with larger samples there is less uncertainty but see the square-root law)</li>
+</ul></li>
+<li><strong>The Central Limit Theorem</strong>: when independent random variables are summed up<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, their properly normalized sum tends toward a normal distribution even if the original variables themselves are not normally distributed. So <span class="math inline">\(\bar{Y}\)</span> is approximately distributed <span class="math inline">\(N(\mu_Y,\frac{\sigma^2_Y}{n})\)</span>
+<ul>
+<li>When working with standardized variables then <span class="math inline">\(\bar{Y} = \frac{\bar{Y}-\mu_Y}{\sigma_Y/\sqrt{n}}\)</span> is approximately distributed as <span class="math inline">\(N(0,1)\)</span> </li>
+<li>The larger is <span class="math inline">\(n\)</span>, the better is the approximation. And this already holds for <span class="math inline">\(n \geq 50\)</span>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> So with a reasonable amount of observations, the mean of <em>i.i.d.</em> variables is normally distributed</li>
+</ul></li>
+</ol>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>There is slightly more to this as fractions such as <span class="math inline">\(\frac{1}{2}\)</span> can in fact be counted as well, and continuous outcomes can be as well complex numbers. But for now we typically see integer numbers as discrete, and real numbers as continuous.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This could be the throw of a dice but as well the measurement of 10,000 house prices.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Taking the mean is as well a sum but then divided by a constant.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>All applied econometrics assumes the number of observations to be larger than 50.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">References</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

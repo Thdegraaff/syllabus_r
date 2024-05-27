@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Applied Econometrics with R (online) - 1&nbsp; Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./linear_regression.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Econometrics with <code>R</code> (online)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regression Analysis in the Social Sciences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modeling in the Social Sciences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Specification and Assessment Issues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">In conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Reviewing probability and statistics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#theory-models-and-hypotheses" id="toc-theory-models-and-hypotheses" class="nav-link active" data-scroll-target="#theory-models-and-hypotheses"><span class="header-section-number">1.1</span> Theory, Models and Hypotheses</a></li>
+  <li><a href="#doing-research-in-the-social-sciences" id="toc-doing-research-in-the-social-sciences" class="nav-link" data-scroll-target="#doing-research-in-the-social-sciences"><span class="header-section-number">1.2</span> Doing Research (in the Social Sciences)</a>
+  <ul>
+  <li><a href="#work-tidy" id="toc-work-tidy" class="nav-link" data-scroll-target="#work-tidy"><span class="header-section-number">1.2.1</span> Work tidy</a></li>
+  <li><a href="#know-where-your-stuff-is" id="toc-know-where-your-stuff-is" class="nav-link" data-scroll-target="#know-where-your-stuff-is"><span class="header-section-number">1.2.2</span> Know where your stuff is</a></li>
+  <li><a href="#make-notes" id="toc-make-notes" class="nav-link" data-scroll-target="#make-notes"><span class="header-section-number">1.2.3</span> Make notes</a></li>
+  <li><a href="#use-a-reference-manager" id="toc-use-a-reference-manager" class="nav-link" data-scroll-target="#use-a-reference-manager"><span class="header-section-number">1.2.4</span> Use a reference manager!</a></li>
+  </ul></li>
+  <li><a href="#statistical-software-r" id="toc-statistical-software-r" class="nav-link" data-scroll-target="#statistical-software-r"><span class="header-section-number">1.3</span> Statistical software <code>R</code></a>
+  <ul>
+  <li><a href="#where-to-get-r" id="toc-where-to-get-r" class="nav-link" data-scroll-target="#where-to-get-r"><span class="header-section-number">1.3.1</span> Where to get <code>R</code></a></li>
+  <li><a href="#why-use-r-and-not-any-other-application" id="toc-why-use-r-and-not-any-other-application" class="nav-link" data-scroll-target="#why-use-r-and-not-any-other-application"><span class="header-section-number">1.3.2</span> Why use <code>R</code> and not any other application?</a></li>
+  </ul></li>
+  <li><a href="#reading-guide" id="toc-reading-guide" class="nav-link" data-scroll-target="#reading-guide"><span class="header-section-number">1.4</span> Reading Guide</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this first introductory chapter, I will lay out the relation between theory development and theory testing as they are the cornerstones of scientific progress. After all, a theory or idea can only be scientific if the theory can be tested and, if need be, refuted. If the theory cannot be tested then it is not science. I will also explain the basic workflow of scientific research and the tools needed with specific emphasis on research in the social sciences. This chapter ends with a reading guide where we discuss each chapter in this syllabus and the relations between the chapters.</p>
+<section id="theory-models-and-hypotheses" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="theory-models-and-hypotheses"><span class="header-section-number">1.1</span> Theory, Models and Hypotheses</h2>
+<p>In 2021, Guido Imbens, Joshua Angrist and David Card received the Nobel price for economics (officially <em>The Sveriges Riksbank Prize in Economic Sciences in Memory of Alfred Nobel</em>). The field they work in is applied econometrics with specific focus on finding <strong>causal</strong> relations. That means that with data they want to test whether phenomenon <span class="math inline">\(X\)</span> has an effect on phenomenon <span class="math inline">\(Y\)</span>. More, in detail, with a causal effect we mean that when we change <span class="math inline">\(X\)</span>, there will be an effect on <span class="math inline">\(Y\)</span>, <em>ceteris paribus</em>, and <strong>not</strong> necessarily the other way. So, when we change <span class="math inline">\(Y\)</span>, <span class="math inline">\(X\)</span> will not necessarily change.</p>
+<p>And identifying causal effects is what most applied econometric work nowadays is focused on. And we will focus on that as well in <a href="linear_regression.html" class="quarto-xref"><span>Chapter 2</span></a>, <a href="multivariate.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="assessment.html" class="quarto-xref"><span>Chapter 4</span></a>. But how do you know what to test, or, in other words, where do phenomena <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> come from? Those phenomena and possible relations originate from scientific theories as you will have in all disciplines. And those theories are typically casts in models—usually in a very abstract manner. Models come in the form of computer simulations (such as with agent-based modeling), real physical models (as with displays), but often models are formulated in mathematical notation with the aim of being as precise, lucid and clear as possible. But note that these models are not necessarily theory. Theory is the underlying set of relations and assumptions that can say something about the specific structure of models. But very often one theory can lead to <strong>multiple</strong> models, each perhaps highlighting different aspects of the underlying theory. An example of such a theory is the Law of Diminishing Marginal Utility: each additional unit of the same good is appreciated less by consumers. This theory can be expressed in many mathematical ways but the underlying concept as displayed in <a href="#fig-marginalutility" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> always remains the same. This type of function, increasing but slower and slower, belongs to the family of <em>concave</em> functions. A function with exponential growth (such as <span class="math inline">\(e^{gt}\)</span> belongs to the family of <em>convex</em> functions). But how such a function should exactly be defined is not a-priori clear.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-marginalutility" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-marginalutility-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="intro_files/figure-html/fig-marginalutility-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-marginalutility-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Law of Diminishing Marginal Utility
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So how to relate this with each other in scientific research? Well, when doing research you are interested in something that is not yet known (the research gap). Your aim is to (partly) fill this research gap by answering a research question. To answer this research question you need theory (a theoretical framework); what do you need to assume, what are the most important (moderator) variables, how do they relate with each other, and so on and so forth. From this theory you construct a model. Not necessarily a mathematical one. For example, you can also make a model in a Geographical Information System environment where you visualize layers of information that you think are most relevant based upon theory (in this case often previous scientific literature). Or you make a simulation model examining risks of flooding by rivers. The final step is the stage where your model should provide you with some answers. Sometimes they are concerned with optimality (what is the best location of a new road in a GIS environment), prediction (where are river dikes most vulnerable), or with establishing a (causal) relation. And it is the latter that this course deals with. How can we know that there is a relation between phenomenon <span class="math inline">\(X\)</span> and phenomenon <span class="math inline">\(Y\)</span> and how do we know whether that relation is causal?</p>
+<p>For that we use applied econometrics (which is a form of applied statistics but then in the social-economic sciences domain—the exact difference will be discussed in <a href="linear_regression.html" class="quarto-xref"><span>Chapter 2</span></a>). And to establish a, hopefully causal, relation, we test our models with empirical data. Be aware, though, that the applied econometrics materials we teach in this course (and in all introductory courses of applied statistics and econometrics all over the world—the “101” courses) is based on so-called frequentist statistics (To freshen up you knowledge about the basics of statistics you might want to read <a href="appendix.html" class="quarto-xref"><span>Appendix A</span></a>). The exact definition is not important for now but know that it is intrinsically related with hypothesis testing.</p>
+<p>And hypothesis testing is most often associated with that scientific philosopher—and perhaps the only one you know—Karl Popper (as displayed in <a href="#fig-popper" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-popper" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-popper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./figures/popper.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-popper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Karl Popper
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Popper was a so-called empiricist and claimed that theories in the empirical sciences (that includes most of the social sciences) can never be proven, only rejected. That is why you can reject a null-hypothesis (<span class="math inline">\(H_0\)</span>), but <strong>never</strong> accept the alternative hypothesis (<span class="math inline">\(H_a\)</span>). And this is <em>highly</em> related with the theoretical framework behind frequentist statistics. Loosely speaking, in frequentist statistics you construct a world where <span class="math inline">\(H_0\)</span> is true and you try to reject that world with data (we will come back to this in <a href="linear_regression.html" class="quarto-xref"><span>Chapter 2</span></a>)—but that world does not say anything about the validity of the alternative hypothesis. Now, Popper never claimed that rejecting one null-hypothesis will reject a whole theory. For that you need a larger body of evidence, including results from all sorts of studies—not only statistical ones, leading to a <em>general</em> consensus amongst the <em>whole</em> scientific community <span class="citation" data-cites="popper2005logic">(<a href="references.html#ref-popper2005logic" role="doc-biblioref">Popper 2005</a>)</span>.</p>
+<p>In truth, although the scientific approach of working with null-hypotheses is a very valuable one (and remarkably practical), it does not always lead to definitive answers. That is because contradicting models can lead to similar null-hypotheses. Moreover, often the connection between research question and null-hypothesis is not a direct one. Consider that you want to know the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>, so your research question is: “What is the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>?”. But, in a frequentist world you only reject hypotheses—thus leading to results in the line of: “The effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is <em>not</em> <span class="math inline">\(\ldots\)</span>”. This makes the evidence for your research question at least circumstantial and in the best case indirect. The bottom-line here is that one needs to be careful in drawing conclusions based on null-hypotheses (and in a broader sense based on models in general). Scientific research typically advances very slowly—but hopefully in a robust and parsimonious way!</p>
+</section>
+<section id="doing-research-in-the-social-sciences" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="doing-research-in-the-social-sciences"><span class="header-section-number">1.2</span> Doing Research (in the Social Sciences)</h2>
+<p>It is remarkable that, although in principle students are (should be) prepared for scientific research, they receive little guidance in <em>how</em> they should do scientific research. What are the tips &amp; tricks of the trade and what—and, more importantly why—should you use with respect to specific (types of) applications and what is the relation between them. In our view most of this should belong in your first course upon entering the university (with the appropriate course title “Research Methods 101”). And some of it you indeed have learned in your first year, but in our experience students still lack “operational” knowledge. Therefore, we discuss below the four elements we think are among the most important—at least for this course. There are others, but for now this will do.</p>
+<section id="work-tidy" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="work-tidy"><span class="header-section-number">1.2.1</span> Work tidy</h3>
+<p>Our first and most important tip is to work tidy. Try to make your work look <strong>good</strong>. And with work we mean everything you submit (such as tutorials, papers, examinations, and theses). And that is because lecturers are just like people and often think from primary instincts with their reptilian brain: if it doesn’t look good, not much time is spent on arguing and thinking as well! Moreover, when your work is difficult to read, lecturers get annoyed. Making your work look good and in the same time more lucid and transparent also serves a higher purpose as it is then easier to detect mistakes. Namely, everyone makes mistakes. The important thing is to detect them early, learn from them and remedy them. This advances science in general and is a very important feature of the scientific process. <a href="assessment.html" class="quarto-xref"><span>Chapter 4</span></a> will spent additional time on working tidy and making it looking good.</p>
+</section>
+<section id="know-where-your-stuff-is" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="know-where-your-stuff-is"><span class="header-section-number">1.2.2</span> Know where your stuff is</h3>
+<p>A second very straightforward tip is to be organised and to know where your stuff is. Often, students come to us for help with all their files piled on a stack on their desktop and facing difficulties finding where their work is. It is always advisable to use a folder structure and have one folder for one project (or for one course). And to the use sub-folders for data, text, code, pdf’s and so forth. A second tip for organisation is to think about versioning. As the well-known Figure <a href="#fig-version" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> shows the number of versions of one file very quickly can get out of hand. Think at least about a consistent naming structure (perhaps with the date involved such as <code>paper_20221215.doc</code>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-version" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-version-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./figures/version.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-version-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Version confusion
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="make-notes" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="make-notes"><span class="header-section-number">1.2.3</span> Make notes</h3>
+<p>One skill that in our opinion is given not too much attention is making <em>useful</em> notes. It has been proven that writing things down is beneficial; not only for remembering but also for understanding. And that seems to be best just by using a pen as this slows writing down and you have to think about what to write down. Underlining or marking is useful less beneficial than writing accompanying notes. But when should you write notes? Well, when attending lectures of course but also when reading. To leverage your notes as much as possible it is important that you have a system where you can <em>retrieve</em> your notes and compare them with other notes. The latter is the hardest part, but is in the long run the most rewarding as new connections are created between lectures, courses, books, and years. You do not need any fancy tools for this (there is literally a ton of applications to be found on internet), Microsoft’s Onenote or Evernote are more than good enough. Where the workflow typically is to first use pen and paper to <em>capture</em> notes and thereafter rewrite and organise your notes in a notes system.</p>
+</section>
+<section id="use-a-reference-manager" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="use-a-reference-manager"><span class="header-section-number">1.2.4</span> Use a reference manager!</h3>
+<p>Perhaps the tool that has the quickest pay-off is a reference manager. For those of you who are not using one yet: <strong>do</strong> it. Why? Because you never have to think about your reference list again. All reference managers come with plugins for Word or other text-editors (or type-setters such as LaTeX that enable you to <em>automatically</em> generate reference list based upon in-text citations which the reference manager can also provide. You only need less than an hour to set it up, but you very quickly become more efficient (and thus <em>save time</em> in future work). There are many reference managers out there, but we advise Zotero as it is open source. There is both a cloud and desktop version and it comes with a handy tutorial. It also provides a plugin for your browser to automatically import the bibliographic details of the paper you are reading at the moment.</p>
+</section>
+</section>
+<section id="statistical-software-r" class="level2 page-columns page-full" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="statistical-software-r"><span class="header-section-number">1.3</span> Statistical software <code>R</code></h2>
+<p>As quantitative research becomes more and more important in the social sciences you need software to <strong>manage</strong> your data and provides statistical and applied econometric <strong>analyses</strong>. We will use <code>R</code> in this course. However, note that <code>R</code> has a steeper learning curve than e.g., <code>STATA</code>, and does not work immediately out-of-the-box. But the user base is large and that is important, because for each problem there is much material to be found on internet (including videos). In this syllabus we will give specific attention to <code>R</code>-script, including why you code it like such and what the intuition is behind that.</p>
+<section id="where-to-get-r" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="where-to-get-r"><span class="header-section-number">1.3.1</span> Where to get <code>R</code></h3>
+<p>First, you need to install <code>R</code> itself. You can do this by downloading this from <a href="https://cran.r-project.org/mirrors.html">CRAN</a> (choose the server you want). Now choose your appropriate operating system, choose the <code>base</code> system, download <code>R</code> and install it. That’s it!</p>
+<p>The base distribution of <code>R</code> comes with a built-in editor, where you can write your script. This editor is however <em>very</em> basic. Therefore, it is very much advised that you download and install the free editor <a href="https://posit.co/download/rstudio-desktop/"><code>RStudio</code></a> as well. Again, choose your operating system and just install the latest version. The very short video (6 minutes) <a href="https://www.youtube.com/watch?v=FIrsOBy5k58">website</a> gives an overview of the <em>basic</em> features (it can do quite some more stuff).</p>
+</section>
+<section id="why-use-r-and-not-any-other-application" class="level3 page-columns page-full" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="why-use-r-and-not-any-other-application"><span class="header-section-number">1.3.2</span> Why use <code>R</code> and not any other application?</h3>
+<p>Ask any data scientist at the moment for the software tools most used and they will most likely answer <code>R</code> or <code>Python</code>. Of course, that should not be a valid answer (many people use <code>Word</code> as well and nobody would argue that <code>Word</code> is brilliantly programmed or designed), but it indicates the popularity (and the community) that uses <code>R</code>.</p>
+<p>Where 15 years ago most social scientists still used <code>SPSS</code> (and the economists <code>Stata</code>), that has now changed completely (well, the economists still use <code>Stata</code>, but the rest of the world moved on). And for good reasons, namely:</p>
+<ol type="1">
+<li>It is open source and thus free;</li>
+<li><code>R</code> is flexible and thus multi-purpose;</li>
+<li>there is now a <strong>very</strong> large userbase; everything you can dream of (that is, in the context of data science/management), somebody else most likely already programmed; </li>
+<li>it generates beautiful pictures, diagram, maps, and histograms (even 3D pie diagrams for the masochists amongst us);</li>
+<li>relative to <code>Stata</code> or <code>Excel</code> it is fast, which is great for larger (spatial) databases.</li>
+</ol>
+<div class="no-row-height column-margin column-container"><span class="margin-aside"><a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN packages</a> give a great overview of all the official packages out there and the wide range of applications, and again they are all free!</span></div><p>In general, you can use <code>R</code> for statistical analysis, simulation analysis, data management, visual display of data, creating documents (and presentations), and even GIS applications. In that respect it is far more flexible than <code>Stata</code>. Last but perhaps not least, <code>R</code> is more and more used outside academia as well. Twitter, Facebook, Booking and Google use <code>R</code>, just as companies as the New York Times for creating interactive website diagrams.</p>
+<p>Social science students might find working with <code>R</code> initially strange, cumbersome or even frustrating. All the lovely drop-menus that are still provided by <code>Excel</code> and <code>Stata</code> have disappeared, and the whole thing is completely script-driven. In fact, <code>R</code> is a full-blown program language. I am aware that this needs some adaptation. However, hopefully, learning <code>R</code> in combination with <code>RStudio</code> will pay-off; if not in becoming more efficient and reproducable, then at least in the fact that you start to understand a <em>different</em> way of doing things and that the office suite (Word, Excel and Powerpoint) is not the only option out there.</p>
+</section>
+</section>
+<section id="reading-guide" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="reading-guide"><span class="header-section-number">1.4</span> Reading Guide</h2>
+<p>This course will not concern itself with theory as such, but more with how to test that theory (the <em>applied</em> in applied econometrics). <a href="linear_regression.html" class="quarto-xref"><span>Chapter 2</span></a> introduces the basic concepts of applied econometrics in the form of univariate regression. <a href="multivariate.html" class="quarto-xref"><span>Chapter 3</span></a> extends this framework to a multivariate regression setting, but in the same deals as well with the translation of theoretical (socio-economic) models to empirical models that are testable. <a href="assessment.html" class="quarto-xref"><span>Chapter 4</span></a> discusses how to <em>specify</em> your model—which variables should you include and which variables not—and how to present your findings to a wider audience (that includes assessors). The final chapter summarizes and provides a general discussion.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-popper2005logic" class="csl-entry" role="listitem">
+Popper, Karl. 2005. <em>The Logic of Scientific Discovery</em>. Routledge.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./linear_regression.html" class="pagination-link" aria-label="Regression Analysis in the Social Sciences">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regression Analysis in the Social Sciences</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
