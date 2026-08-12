@@ -583,9 +583,8 @@ F = \frac{1}{2} \left(\frac{t_1^2 + t_2^2 - 2\hat{\rho}_{t_1,t_2}t_1 t_2}{1-\hat
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(testscr <span class="sc">~</span> str <span class="sc">+</span> expenditure <span class="sc">+</span> english, <span class="at">data =</span> CASchools)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_5, <span class="fu">c</span>(<span class="st">"str=0"</span>, <span class="st">"expenditure=0"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear hypothesis test
-
-Hypothesis:
+<pre><code>
+Linear hypothesis test:
 str = 0
 expenditure = 0
 
@@ -820,9 +819,8 @@ F-statistic: 175.4 on 3 and 416 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_7, <span class="fu">c</span>(<span class="st">"I(income^2)"</span>, <span class="st">"I(income^3)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear hypothesis test
-
-Hypothesis:
+<pre><code>
+Linear hypothesis test:
 I(income^2) = 0
 I(income^3) = 0
 
