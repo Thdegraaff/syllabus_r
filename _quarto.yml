@@ -22,15 +22,15 @@ bibliography: references.bib
 format:
   html:
     fontsize: 1.0em
-    include-in-header:
-      - text: |
-          <script>
-          window.MathJax = {
-            tex: {
-              tags: 'ams'
-            }
-          };
-          </script>
+    # include-in-header:
+    #   - text: |
+    #       <script>
+    #       window.MathJax = {
+    #         tex: {
+    #           tags: 'ams'
+    #         }
+    #       };
+    #       </script>
     theme: cosmo
     toc-depth: 4
 
